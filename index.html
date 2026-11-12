@@ -768,6 +768,14 @@
       renderData();
     }
 
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById(tabId);
+      if (target) target.classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
     function openAndCopyEmail(emailAddr, e) {
       try {
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -802,8 +810,22 @@
       document.getElementById('kpi-sent').textContent = PAYLOAD.kpis.total_sent;
       document.getElementById('kpi-sent-sub').textContent = `${PAYLOAD.kpis.ministries_sent} Ministères · ${PAYLOAD.kpis.enterprises_sent} Entreprises`;
       document.getElementById('kpi-actions').textContent = PAYLOAD.kpis.urgent_actions;
+      if (document.getElementById('kpi-active-conversations')) {
+        document.getElementById('kpi-active-conversations').textContent = PAYLOAD.kpis.active_discussions;
+      }
       document.getElementById('kpi-bounces').textContent = PAYLOAD.kpis.total_resolved_bounces;
       document.getElementById('kpi-deferred').textContent = PAYLOAD.kpis.deferred_count;
+
+      // Tab badges
+      if (document.getElementById('tab-action-count')) {
+        document.getElementById('tab-action-count').textContent = PAYLOAD.action_items.length;
+      }
+      if (document.getElementById('tab-active-count')) {
+        document.getElementById('tab-active-count').textContent = PAYLOAD.active_conversations.length;
+      }
+      if (document.getElementById('tab-deferred-count')) {
+        document.getElementById('tab-deferred-count').textContent = PAYLOAD.deferred_items.length;
+      }
 
       // Action Items
       const actContainer = document.getElementById('action-container');
