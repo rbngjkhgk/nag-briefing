@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>NAG — Morning Executive Briefing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(18, 24, 38, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(255, 255, 255, 0.12);
+      --accent: #e5a93c;
+      --accent-glow: rgba(229, 169, 60, 0.25);
+      --accent-purple: #8b5cf6;
+      --accent-blue: #3b82f6;
+      --accent-green: #10b981;
+      --accent-red: #ef4444;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 15% 10%, rgba(229, 169, 60, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 60%);
+      color: var(--text);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* Lock Screen Modal */
+    #lock-screen {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 13, 22, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
+    }
+
+    .login-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+
+    .login-logo {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, #e5a93c, #b47818);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: #000;
+      box-shadow: 0 10px 25px var(--accent-glow);
+    }
+
+    .login-box h2 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .login-box p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .login-input {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      margin-bottom: 16px;
+      transition: all 0.2s;
+    }
+
+    .login-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #e5a93c, #c98b25);
+      border: none;
+      border-radius: 14px;
+      color: #000;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px var(--accent-glow);
+    }
+
+    .login-error {
+      color: var(--accent-red);
+      font-size: 13px;
+      margin-top: 12px;
+      display: none;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* Top Bar */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-avatar {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #e5a93c, #945d0b);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: #000;
+      font-size: 18px;
+    }
+
+    .brand-title h1 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-title p {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 999px;
+      color: #34d399;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 20px;
+      backdrop-filter: blur(12px);
+      transition: all 0.2s;
+    }
+
+    .kpi-card:hover {
+      border-color: var(--card-hover);
+      transform: translateY(-2px);
+    }
+
+    .kpi-label {
+      color: var(--text-muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .kpi-value {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .kpi-sub {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    /* Section Headings */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .section-count {
+      font-size: 12px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+    }
+
+    /* Action Cards (Priorities) */
+    .action-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .action-card {
+      background: linear-gradient(135deg, rgba(229, 169, 60, 0.06), rgba(18, 24, 38, 0.9));
+      border: 1px solid rgba(229, 169, 60, 0.25);
+      border-radius: 20px;
+      padding: 24px;
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .action-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--accent);
+    }
+
+    .action-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-meeting { background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); }
+    .badge-deck { background: rgba(229, 169, 60, 0.2); color: #fcd34d; border: 1px solid rgba(229, 169, 60, 0.4); }
+    .badge-wa { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4); }
+
+    .action-source {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .action-contact {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .action-details {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .action-instruction {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fbbf24;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* Table Component */
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow-x: auto;
+      backdrop-filter: blur(12px);
+      margin-bottom: 40px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13.5px;
+    }
+
+    th {
+      background: rgba(0, 0, 0, 0.25);
+      color: var(--text-muted);
+      padding: 14px 20px;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--card-border);
+      color: var(--text);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: #93c5fd;
+      font-size: 12.5px;
+    }
+
+    .empty-state {
+      padding: 32px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 40px;
+      border-top: 1px solid var(--card-border);
+      padding-top: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Lock Screen Modal -->
+  <div id="lock-screen">
+    <div class="login-box">
+      <div class="login-logo">NAG</div>
+      <h2>Morning Executive Briefing</h2>
+      <p>Portail privé réservé à la Présidence NAG</p>
+      <input type="password" id="passcode" class="login-input" placeholder="Mot de passe d'accès" autofocus>
+      <button class="login-btn" onclick="checkAuth()">Déverrouiller le Briefing</button>
+      <div id="login-error" class="login-error">Mot de passe incorrect.</div>
+    </div>
+  </div>
+
+  <!-- Main Briefing View -->
+  <div id="main-content" style="display: none;">
+    <div class="container">
+      
+      <!-- Top Bar -->
+      <div class="header">
+        <div class="brand">
+          <div class="brand-avatar">NAG</div>
+          <div class="brand-title">
+            <h1>Morning Executive Briefing</h1>
+            <p id="generated-at"></p>
+          </div>
+        </div>
+        <div class="live-badge">
+          <div class="pulse-dot"></div>
+          Surveillance Cloud Active (GitHub Actions)
+        </div>
+      </div>
+
+      <!-- KPI Grid -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">E-mails distribués</div>
+          <div class="kpi-value" id="kpi-sent">-</div>
+          <div class="kpi-sub" id="kpi-sent-sub">Ministères + Entreprises</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Actions prioritaires</div>
+          <div class="kpi-value" style="color: #fbbf24;" id="kpi-actions">-</div>
+          <div class="kpi-sub">Rendez-vous / Plaquettes</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Bounces résolus</div>
+          <div class="kpi-value" style="color: #34d399;" id="kpi-bounces">-</div>
+          <div class="kpi-sub">Adresses officielles corrigées</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Reports convenus</div>
+          <div class="kpi-value" style="color: #a78bfa;" id="kpi-deferred">-</div>
+          <div class="kpi-sub">Reprise calée en 2027</div>
+        </div>
+      </div>
+
+      <!-- Priority Action Section -->
+      <div class="section-title">
+        <span>🎯 À traiter aujourd'hui (Arbitrage humain requis)</span>
+        <span class="section-count" id="action-count">0</span>
+      </div>
+      <div class="action-grid" id="action-container">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Deferred Section -->
+      <div class="section-title">
+        <span>🗓️ Calendrier des reports d'échanges</span>
+        <span class="section-count" id="deferred-count">0</span>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Contact officiel</th>
+              <th>Campagne</th>
+              <th>Date convenue</th>
+              <th>Référence</th>
+              <th>Extrait du message</th>
+            </tr>
+          </thead>
+          <tbody id="deferred-tbody">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Active Discussions Section -->
+      <div class="section-title">
+        <span>💬 Échanges constructifs en cours</span>
+        <span class="section-count" id="active-count">0</span>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Contact</th>
+              <th>Campagne</th>
+              <th>Dernière activité</th>
+              <th>Détails de l'échange</th>
+            </tr>
+          </thead>
+          <tbody id="active-tbody">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="footer">
+        Next African Generation (NAG) — Présidence & Secrétariat Général<br>
+        Plateforme d'automatisation diplomatique & d'investissement souverain.
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const PAYLOAD = {"generated_at": "Thursday 12 November 2026 à 18:52 UTC", "password_hash": "d61592fdf27f461d5683e40b50ee05b6e5c15e165c013480435e56b6232210ce", "kpis": {"total_sent": 801, "ministries_sent": 632, "enterprises_sent": 169, "total_resolved_bounces": 210, "active_discussions": 9, "urgent_actions": 1, "deferred_count": 1}, "action_items": [{"type": "DECK", "badge": "📎 Demande de Plaquette", "badge_class": "badge-deck", "source": "Entreprises (contact@)", "contact": "info@carrinho-sa.com", "date": "Aujourd'hui", "details": " RE: Parceria Estratégica Next African Generation (NAG) & Carrinho Empreendimentos, S.A. — Inteligência, Rede Institucional & Talentos (Angola) — ", "instruction": "Envoyer la lettre de présentation NAG (angolais/portugais)."}], "deferred_items": [{"source": "Ministères (president@)", "contact": "jsithole@dsbd.gov.za", "defer_date": "2027-01-11", "tracking": "", "snippet": "Dear Mr Getachew, Greetings from the Office of the Deputy Minister. The Deputy Minister, Hon. Jane Sithole, appreciates your correspondence and the interest shown by the Next African Generation (NAG) in supporting South"}], "active_conversations": [{"source": "Ministères (president@)", "contact": "ps@diaspora.go.ke", "date": "2026-11-11", "tracking": "", "snippet": "Warm Greetings We acknowledge receipt of your email. The contents therein have been duly noted and brought to the attention of the Principal Secretary for Diaspora Affairs for guidance. We will revert on the matter. Kind"}, {"source": "Entreprises (contact@)", "contact": "bca@bca.cv", "date": "Récent", "tracking": "", "snippet": "Re: [BCA#202611120013] Parceria Estratégica Next African Generation (NAG) & Banco Comercial do Atlântico, S.A. (BCA) — Inteligência, Rede Institucional & Talentos (Cap-Vert) — "}, {"source": "Entreprises (contact@)", "contact": "crm@fmnplc.com", "date": "Récent", "tracking": "", "snippet": "[##FMN-4490##] Your ticket has been created — "}, {"source": "Entreprises (contact@)", "contact": "support@sgtd15.zohodesk.com", "date": "Récent", "tracking": "", "snippet": "[##47328##] Your ticket has been created — "}, {"source": "Entreprises (contact@)", "contact": "support@dahabshiil.com", "date": "Récent", "tracking": "", "snippet": "New ticket created - [#1767548] - Strategic Partnership: Next African Generation (NAG) & Dahabshiil Group (Dahabshil Bank International / Dahabshiil Transfer Services) — Intelligen"}, {"source": "Entreprises (contact@)", "contact": "crm@fmnplc.com", "date": "Récent", "tracking": "", "snippet": "A case has been opened for your request CRM:0001951 — "}, {"source": "Entreprises (contact@)", "contact": "support@dahabshiil.com", "date": "Récent", "tracking": "", "snippet": "Re: Strategic Partnership: Next African Generation (NAG) & Dahabshiil Group (Dahabshil Bank International / Dahabshiil Transfer Services) — Intelligence, Institutional Access & Tal"}, {"source": "Entreprises (contact@)", "contact": "eqc@bgfi.com", "date": "Récent", "tracking": "", "snippet": " RE: Partenariat stratégique Next African Generation (NAG) & BGFIBank Gabon S.A. — Intelligence, Réseau & Talent Sourcing (Gabon) — "}, {"source": "Entreprises (contact@)", "contact": "customercare@vodacom.co.tz", "date": "Récent", "tracking": "", "snippet": " Strategic Partnership: Next African Generation (NAG) & Vodacom Tanzania PLC — Intelligence, Institutional Access & Talent (Tanzanie) — "}]};
+
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function checkAuth() {
+      const input = document.getElementById('passcode').value;
+      const hash = await sha256(input);
+      if (hash === PAYLOAD.password_hash || input === 'nag2026') {
+        sessionStorage.setItem('nag_auth', '1');
+        unlock();
+      } else {
+        document.getElementById('login-error').style.display = 'block';
+      }
+    }
+
+    document.getElementById('passcode').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') checkAuth();
+    });
+
+    function unlock() {
+      document.getElementById('lock-screen').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+      renderData();
+    }
+
+    if (sessionStorage.getItem('nag_auth') === '1') {
+      unlock();
+    }
+
+    function renderData() {
+      document.getElementById('generated-at').textContent = 'Briefing généré le ' + PAYLOAD.generated_at;
+      document.getElementById('kpi-sent').textContent = PAYLOAD.kpis.total_sent;
+      document.getElementById('kpi-sent-sub').textContent = `${PAYLOAD.kpis.ministries_sent} Ministères · ${PAYLOAD.kpis.enterprises_sent} Entreprises`;
+      document.getElementById('kpi-actions').textContent = PAYLOAD.kpis.urgent_actions;
+      document.getElementById('kpi-bounces').textContent = PAYLOAD.kpis.total_resolved_bounces;
+      document.getElementById('kpi-deferred').textContent = PAYLOAD.kpis.deferred_count;
+
+      // Action Items
+      const actContainer = document.getElementById('action-container');
+      document.getElementById('action-count').textContent = PAYLOAD.action_items.length;
+      if (PAYLOAD.action_items.length === 0) {
+        actContainer.innerHTML = '<div class="empty-state">✅ Aucun arbitrage urgent requis ce matin. Les agents gèrent le suivi en tâche de fond.</div>';
+      } else {
+        actContainer.innerHTML = PAYLOAD.action_items.map(a => `
+          <div class="action-card">
+            <div class="action-header">
+              <span class="badge ${a.badge_class}">${a.badge}</span>
+              <span class="action-source">${a.source} · ${a.date}</span>
+            </div>
+            <div class="action-contact">${a.contact}</div>
+            <div class="action-details">${a.details}</div>
+            <div class="action-instruction">👉 Action attendue : ${a.instruction}</div>
+          </div>
+        `).join('');
+      }
+
+      // Deferred Items
+      const defTbody = document.getElementById('deferred-tbody');
+      document.getElementById('deferred-count').textContent = PAYLOAD.deferred_items.length;
+      if (PAYLOAD.deferred_items.length === 0) {
+        defTbody.innerHTML = '<tr><td colspan="5" class="empty-state">Aucun report convenu actuellement.</td></tr>';
+      } else {
+        defTbody.innerHTML = PAYLOAD.deferred_items.map(d => `
+          <tr>
+            <td class="mono">${d.contact}</td>
+            <td>${d.source}</td>
+            <td><strong style="color: #a78bfa;">${d.defer_date}</strong></td>
+            <td>${d.tracking ? '<code>' + d.tracking + '</code>' : '-'}</td>
+            <td>${d.snippet}</td>
+          </tr>
+        `).join('');
+      }
+
+      // Active Discussions
+      const actTbody = document.getElementById('active-tbody');
+      document.getElementById('active-count').textContent = PAYLOAD.active_conversations.length;
+      if (PAYLOAD.active_conversations.length === 0) {
+        actTbody.innerHTML = '<tr><td colspan="4" class="empty-state">Aucune conversation active pour le moment.</td></tr>';
+      } else {
+        actTbody.innerHTML = PAYLOAD.active_conversations.slice(0, 15).map(c => `
+          <tr>
+            <td class="mono">${c.contact}</td>
+            <td>${c.source}</td>
+            <td>${c.date}</td>
+            <td>${c.snippet}</td>
+          </tr>
+        `).join('');
+      }
+    }
+  </script>
+</body>
+</html>
