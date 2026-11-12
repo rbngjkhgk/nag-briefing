@@ -345,6 +345,90 @@
       color: #fff;
     }
 
+    .action-contact-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .action-contact-link {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: #38bdf8;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 10px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .action-contact-link:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
+    }
+
+    .btn-action-open {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-infomaniak {
+      background: linear-gradient(135deg, #e5a93c, #b45309);
+      color: #000;
+      border: 1px solid rgba(229, 169, 60, 0.6);
+    }
+
+    .btn-infomaniak:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(229, 169, 60, 0.4);
+      filter: brightness(1.1);
+    }
+
+    .btn-mailto {
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-mailto:hover {
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+    }
+
+    .email-link {
+      color: #38bdf8;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .email-link:hover {
+      color: #7dd3fc;
+      text-decoration: underline;
+    }
+
     .action-details {
       background: rgba(0, 0, 0, 0.3);
       padding: 12px 16px;
@@ -371,6 +455,91 @@
       overflow-x: auto;
       backdrop-filter: blur(12px);
       margin-bottom: 40px;
+    }
+
+    /* Modern Tab Navigation */
+    .tabs-nav {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 28px;
+      padding: 6px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      backdrop-filter: blur(16px);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tabs-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(229, 169, 60, 0.18), rgba(229, 169, 60, 0.08));
+      border: 1px solid rgba(229, 169, 60, 0.45);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(229, 169, 60, 0.15);
+    }
+
+    .tab-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+    }
+
+    .tab-btn.active .tab-badge {
+      background: rgba(229, 169, 60, 0.3);
+      color: #fcd34d;
+    }
+
+    .tab-badge.badge-warning {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    /* Tab Panes */
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     table {
@@ -469,73 +638,95 @@
           <div class="kpi-value" id="kpi-sent">-</div>
           <div class="kpi-sub" id="kpi-sent-sub">Ministères + Entreprises</div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Actions prioritaires</div>
+        <div class="kpi-card" style="cursor: pointer;" onclick="switchTab('tab-actions', document.getElementById('btn-tab-actions'))" title="Cliquer pour afficher les actions à traiter">
+          <div class="kpi-label">Actions prioritaires ↗</div>
           <div class="kpi-value" style="color: #fbbf24;" id="kpi-actions">-</div>
           <div class="kpi-sub">Rendez-vous / Plaquettes</div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Bounces résolus</div>
-          <div class="kpi-value" style="color: #34d399;" id="kpi-bounces">-</div>
-          <div class="kpi-sub">Adresses officielles corrigées</div>
+        <div class="kpi-card" style="cursor: pointer;" onclick="switchTab('tab-active', document.getElementById('btn-tab-active'))" title="Cliquer pour voir les échanges en cours">
+          <div class="kpi-label">Échanges en cours ↗</div>
+          <div class="kpi-value" style="color: #38bdf8;" id="kpi-active-conversations">-</div>
+          <div class="kpi-sub">Conversations actives</div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Reports convenus</div>
+        <div class="kpi-card" style="cursor: pointer;" onclick="switchTab('tab-deferred', document.getElementById('btn-tab-deferred'))" title="Cliquer pour voir le calendrier 2027">
+          <div class="kpi-label">Reports convenus ↗</div>
           <div class="kpi-value" style="color: #a78bfa;" id="kpi-deferred">-</div>
           <div class="kpi-sub">Reprise calée en 2027</div>
         </div>
       </div>
 
-      <!-- Priority Action Section -->
-      <div class="section-title">
-        <span>🎯 À traiter aujourd'hui (Arbitrage humain requis)</span>
-        <span class="section-count" id="action-count">0</span>
-      </div>
-      <div class="action-grid" id="action-container">
-        <!-- Rendered by JS -->
-      </div>
-
-      <!-- Deferred Section -->
-      <div class="section-title">
-        <span>🗓️ Calendrier des reports d'échanges</span>
-        <span class="section-count" id="deferred-count">0</span>
-      </div>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Contact officiel</th>
-              <th>Campagne</th>
-              <th>Date convenue</th>
-              <th>Référence</th>
-              <th>Extrait du message</th>
-            </tr>
-          </thead>
-          <tbody id="deferred-tbody">
-            <!-- Rendered by JS -->
-          </tbody>
-        </table>
+      <!-- Tab Navigation Bar -->
+      <div class="tabs-nav">
+        <button class="tab-btn active" id="btn-tab-actions" onclick="switchTab('tab-actions', this)">
+          <span>🎯 À traiter aujourd'hui</span>
+          <span class="tab-badge badge-warning" id="tab-action-count">0</span>
+        </button>
+        <button class="tab-btn" id="btn-tab-active" onclick="switchTab('tab-active', this)">
+          <span>💬 Échanges constructifs</span>
+          <span class="tab-badge" id="tab-active-count">0</span>
+        </button>
+        <button class="tab-btn" id="btn-tab-deferred" onclick="switchTab('tab-deferred', this)">
+          <span>🗓️ Calendrier des reports</span>
+          <span class="tab-badge" id="tab-deferred-count">0</span>
+        </button>
       </div>
 
-      <!-- Active Discussions Section -->
-      <div class="section-title">
-        <span>💬 Échanges constructifs en cours</span>
-        <span class="section-count" id="active-count">0</span>
+      <!-- Tab 1: Priority Actions -->
+      <div id="tab-actions" class="tab-pane active">
+        <div class="section-title">
+          <span>🎯 À traiter aujourd'hui (Arbitrage humain requis)</span>
+          <span class="section-count" id="action-count">0</span>
+        </div>
+        <div class="action-grid" id="action-container">
+          <!-- Rendered by JS -->
+        </div>
       </div>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Contact</th>
-              <th>Campagne</th>
-              <th>Dernière activité</th>
-              <th>Détails de l'échange</th>
-            </tr>
-          </thead>
-          <tbody id="active-tbody">
-            <!-- Rendered by JS -->
-          </tbody>
-        </table>
+
+      <!-- Tab 2: Active Discussions -->
+      <div id="tab-active" class="tab-pane">
+        <div class="section-title">
+          <span>💬 Échanges constructifs en cours</span>
+          <span class="section-count" id="active-count">0</span>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Contact</th>
+                <th>Campagne</th>
+                <th>Dernière activité</th>
+                <th>Détails de l'échange</th>
+              </tr>
+            </thead>
+            <tbody id="active-tbody">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 3: Deferred Schedule -->
+      <div id="tab-deferred" class="tab-pane">
+        <div class="section-title">
+          <span>🗓️ Calendrier des reports d'échanges</span>
+          <span class="section-count" id="deferred-count">0</span>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Contact officiel</th>
+                <th>Campagne</th>
+                <th>Date convenue</th>
+                <th>Référence</th>
+                <th>Extrait du message</th>
+              </tr>
+            </thead>
+            <tbody id="deferred-tbody">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <div class="footer">
@@ -547,7 +738,7 @@
   </div>
 
   <script>
-    const PAYLOAD = {"generated_at": "Thursday 12 November 2026 à 18:57 UTC", "password_hash": "d61592fdf27f461d5683e40b50ee05b6e5c15e165c013480435e56b6232210ce", "kpis": {"total_sent": 632, "ministries_sent": 632, "enterprises_sent": 0, "total_resolved_bounces": 169, "active_discussions": 0, "urgent_actions": 2, "deferred_count": 0}, "action_items": [{"type": "MEETING", "badge": "📅 Proposition de Réunion", "badge_class": "badge-meeting", "source": "Ministères (president@)", "contact": "jsithole@dsbd.gov.za", "date": "2026-11-12", "details": "Dear Mr Getachew, Greetings from the Office of the Deputy Minister. The Deputy Minister, Hon. Jane Sithole, appreciates your correspondence and the interest shown by the Next African Generation (NAG) in supporting South", "instruction": "Caler votre créneau horaire ou envoyer votre lien visioconférence."}, {"type": "WHATSAPP", "badge": "📱 Échange WhatsApp", "badge_class": "badge-wa", "source": "Ministères (president@)", "contact": "ps@diaspora.go.ke", "date": "2026-11-11", "details": "Warm Greetings We acknowledge receipt of your email. The contents therein have been duly noted and brought to the attention of the Principal Secretary for Diaspora Affairs for guidance. We will revert on the matter. Kind", "instruction": "Poursuivre la conversation directement sur WhatsApp."}], "deferred_items": [], "active_conversations": []};
+    const PAYLOAD = {"generated_at": "Thursday 12 November 2026 à 19:06 UTC", "password_hash": "d61592fdf27f461d5683e40b50ee05b6e5c15e165c013480435e56b6232210ce", "kpis": {"total_sent": 801, "ministries_sent": 632, "enterprises_sent": 169, "total_resolved_bounces": 210, "active_discussions": 8, "urgent_actions": 3, "deferred_count": 0}, "action_items": [{"type": "MEETING", "badge": "📅 Proposition de Réunion", "badge_class": "badge-meeting", "source": "Ministères (president@)", "contact": "jsithole@dsbd.gov.za", "date": "2026-11-12", "details": "Dear Mr Getachew, Greetings from the Office of the Deputy Minister. The Deputy Minister, Hon. Jane Sithole, appreciates your correspondence and the interest shown by the Next African Generation (NAG) in supporting South", "instruction": "Caler votre créneau horaire ou envoyer votre lien visioconférence."}, {"type": "WHATSAPP", "badge": "📱 Échange WhatsApp", "badge_class": "badge-wa", "source": "Ministères (president@)", "contact": "ps@diaspora.go.ke", "date": "2026-11-11", "details": "Warm Greetings We acknowledge receipt of your email. The contents therein have been duly noted and brought to the attention of the Principal Secretary for Diaspora Affairs for guidance. We will revert on the matter. Kind", "instruction": "Poursuivre la conversation directement sur WhatsApp."}, {"type": "DECK", "badge": "📎 Demande de Plaquette", "badge_class": "badge-deck", "source": "Entreprises (contact@)", "contact": "info@carrinho-sa.com", "date": "Aujourd'hui", "details": " RE: Parceria Estratégica Next African Generation (NAG) & Carrinho Empreendimentos, S.A. — Inteligência, Rede Institucional & Talentos (Angola) — ", "instruction": "Envoyer la lettre de présentation NAG (angolais/portugais)."}], "deferred_items": [], "active_conversations": [{"source": "Entreprises (contact@)", "contact": "bca@bca.cv", "date": "Récent", "tracking": "", "snippet": "Re: [BCA#202611120013] Parceria Estratégica Next African Generation (NAG) & Banco Comercial do Atlântico, S.A. (BCA) — Inteligência, Rede Institucional & Talentos (Cap-Vert) — "}, {"source": "Entreprises (contact@)", "contact": "crm@fmnplc.com", "date": "Récent", "tracking": "", "snippet": "[##FMN-4490##] Your ticket has been created — "}, {"source": "Entreprises (contact@)", "contact": "support@sgtd15.zohodesk.com", "date": "Récent", "tracking": "", "snippet": "[##47328##] Your ticket has been created — "}, {"source": "Entreprises (contact@)", "contact": "support@dahabshiil.com", "date": "Récent", "tracking": "", "snippet": "New ticket created - [#1767548] - Strategic Partnership: Next African Generation (NAG) & Dahabshiil Group (Dahabshil Bank International / Dahabshiil Transfer Services) — Intelligen"}, {"source": "Entreprises (contact@)", "contact": "crm@fmnplc.com", "date": "Récent", "tracking": "", "snippet": "A case has been opened for your request CRM:0001951 — "}, {"source": "Entreprises (contact@)", "contact": "support@dahabshiil.com", "date": "Récent", "tracking": "", "snippet": "Re: Strategic Partnership: Next African Generation (NAG) & Dahabshiil Group (Dahabshil Bank International / Dahabshiil Transfer Services) — Intelligence, Institutional Access & Tal"}, {"source": "Entreprises (contact@)", "contact": "eqc@bgfi.com", "date": "Récent", "tracking": "", "snippet": " RE: Partenariat stratégique Next African Generation (NAG) & BGFIBank Gabon S.A. — Intelligence, Réseau & Talent Sourcing (Gabon) — "}, {"source": "Entreprises (contact@)", "contact": "customercare@vodacom.co.tz", "date": "Récent", "tracking": "", "snippet": " Strategic Partnership: Next African Generation (NAG) & Vodacom Tanzania PLC — Intelligence, Institutional Access & Talent (Tanzanie) — "}]};
 
     async function sha256(message) {
       const msgBuffer = new TextEncoder().encode(message);
@@ -577,6 +768,31 @@
       renderData();
     }
 
+    function openAndCopyEmail(emailAddr, e) {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(emailAddr);
+        }
+      } catch (err) {}
+      showToast(`📋 <strong>${emailAddr}</strong> copié ! Collez (Cmd+V) dans la recherche Infomaniak.`);
+    }
+
+    function showToast(msg) {
+      let toast = document.getElementById('nag-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'nag-toast';
+        toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#0f172a;color:#f8fafc;padding:14px 22px;border-radius:14px;border:1px solid #38bdf8;box-shadow:0 12px 35px rgba(0,0,0,0.7);font-size:14px;z-index:9999;transition:opacity 0.3s ease;display:flex;align-items:center;gap:10px;font-family:sans-serif;backdrop-filter:blur(12px);';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = msg;
+      toast.style.opacity = '1';
+      clearTimeout(window.__toastTimeout);
+      window.__toastTimeout = setTimeout(() => {
+        toast.style.opacity = '0';
+      }, 4500);
+    }
+
     if (sessionStorage.getItem('nag_auth') === '1') {
       unlock();
     }
@@ -601,7 +817,18 @@
               <span class="badge ${a.badge_class}">${a.badge}</span>
               <span class="action-source">${a.source} · ${a.date}</span>
             </div>
-            <div class="action-contact">${a.contact}</div>
+            <div class="action-contact-row">
+              <a href="https://mail.infomaniak.com" target="_blank" onclick="openAndCopyEmail('${a.contact}', event)" class="action-contact-link" title="Cliquer pour ouvrir dans Infomaniak Mail (l'adresse est copiée automatiquement)">
+                <span>📧 ${a.contact}</span>
+                <span style="font-size: 13px; opacity: 0.8;">↗</span>
+              </a>
+              <a href="https://mail.infomaniak.com" target="_blank" onclick="openAndCopyEmail('${a.contact}', event)" class="btn-action-open btn-infomaniak" title="Ouvrir Infomaniak Webmail">
+                <span>🚀 Ouvrir dans ma boîte mail</span>
+              </a>
+              <a href="mailto:${a.contact}" class="btn-action-open btn-mailto" title="Écrire via client messagerie local">
+                <span>✉️ Répondre</span>
+              </a>
+            </div>
             <div class="action-details">${a.details}</div>
             <div class="action-instruction">👉 Action attendue : ${a.instruction}</div>
           </div>
@@ -616,7 +843,11 @@
       } else {
         defTbody.innerHTML = PAYLOAD.deferred_items.map(d => `
           <tr>
-            <td class="mono">${d.contact}</td>
+            <td class="mono">
+              <a href="https://mail.infomaniak.com" target="_blank" onclick="openAndCopyEmail('${d.contact}', event)" class="email-link" title="Ouvrir dans Infomaniak Mail">
+                ${d.contact} <span style="font-size: 11px;">↗</span>
+              </a>
+            </td>
             <td>${d.source}</td>
             <td><strong style="color: #a78bfa;">${d.defer_date}</strong></td>
             <td>${d.tracking ? '<code>' + d.tracking + '</code>' : '-'}</td>
@@ -631,9 +862,13 @@
       if (PAYLOAD.active_conversations.length === 0) {
         actTbody.innerHTML = '<tr><td colspan="4" class="empty-state">Aucune conversation active pour le moment.</td></tr>';
       } else {
-        actTbody.innerHTML = PAYLOAD.active_conversations.slice(0, 15).map(c => `
+        actTbody.innerHTML = PAYLOAD.active_conversations.slice(0, 20).map(c => `
           <tr>
-            <td class="mono">${c.contact}</td>
+            <td class="mono">
+              <a href="https://mail.infomaniak.com" target="_blank" onclick="openAndCopyEmail('${c.contact}', event)" class="email-link" title="Ouvrir dans Infomaniak Mail">
+                ${c.contact} <span style="font-size: 11px;">↗</span>
+              </a>
+            </td>
             <td>${c.source}</td>
             <td>${c.date}</td>
             <td>${c.snippet}</td>
