@@ -2,27 +2,36 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>NAG — Morning Executive Briefing</title>
+  
+  <!-- Apple iOS Web App Meta Tags for standalone iPhone experience -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="NAG Briefing">
+  <meta name="theme-color" content="#090d16">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #090d16;
-      --card-bg: rgba(18, 24, 38, 0.7);
+      --card-bg: rgba(18, 24, 38, 0.75);
       --card-border: rgba(255, 255, 255, 0.08);
-      --card-hover: rgba(255, 255, 255, 0.12);
-      --accent: #e5a93c;
-      --accent-glow: rgba(229, 169, 60, 0.25);
+      --card-hover: rgba(255, 255, 255, 0.14);
+      --accent-gold: #e5a93c;
+      --accent-gold-glow: rgba(229, 169, 60, 0.25);
       --accent-purple: #8b5cf6;
+      --accent-purple-glow: rgba(139, 92, 246, 0.25);
       --accent-blue: #3b82f6;
       --accent-green: #10b981;
       --accent-red: #ef4444;
-      --text: #f1f5f9;
+      --accent-cyan: #06b6d4;
+      --text: #f8fafc;
       --text-muted: #94a3b8;
-      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      --font-display: 'Space Grotesk', sans-serif;
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
     }
 
     * {
@@ -30,27 +39,28 @@
       margin: 0;
       padding: 0;
       -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
       background-color: var(--bg);
       background-image: 
-        radial-gradient(circle at 15% 10%, rgba(229, 169, 60, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 85% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 60%);
+        radial-gradient(circle at 12% 8%, rgba(229, 169, 60, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 88% 75%, rgba(139, 92, 246, 0.09) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
       color: var(--text);
       font-family: var(--font-main);
       min-height: 100vh;
-      padding-bottom: 60px;
+      padding-bottom: 90px;
     }
 
     /* Lock Screen Modal */
     #lock-screen {
       position: fixed;
       inset: 0;
-      background: rgba(9, 13, 22, 0.94);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(9, 13, 22, 0.96);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -61,99 +71,104 @@
     .login-box {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 24px;
-      padding: 40px;
-      max-width: 420px;
+      border-radius: 28px;
+      padding: 40px 30px;
+      max-width: 400px;
       width: 100%;
       text-align: center;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.8), 0 0 40px var(--accent-gold-glow);
     }
 
     .login-logo {
-      width: 64px;
-      height: 64px;
+      width: 68px;
+      height: 68px;
       margin: 0 auto 20px;
       background: linear-gradient(135deg, #e5a93c, #b47818);
-      border-radius: 16px;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-display);
-      font-size: 24px;
-      font-weight: 700;
+      font-size: 26px;
+      font-weight: 800;
       color: #000;
-      box-shadow: 0 10px 25px var(--accent-glow);
+      box-shadow: 0 10px 30px var(--accent-gold-glow);
     }
 
     .login-box h2 {
       font-family: var(--font-display);
-      font-size: 24px;
+      font-size: 22px;
       margin-bottom: 8px;
+      color: var(--text);
     }
 
     .login-box p {
       color: var(--text-muted);
-      font-size: 14px;
+      font-size: 13.5px;
       margin-bottom: 24px;
+      line-height: 1.5;
     }
 
-    .login-input {
+    .login-box input {
       width: 100%;
-      padding: 14px 18px;
       background: rgba(0, 0, 0, 0.4);
       border: 1px solid var(--card-border);
       border-radius: 14px;
-      color: #fff;
+      padding: 14px 18px;
+      color: var(--text);
       font-size: 16px;
+      margin-bottom: 18px;
       outline: none;
-      margin-bottom: 16px;
-      transition: all 0.2s;
+      text-align: center;
+      transition: all 0.25s ease;
     }
 
-    .login-input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-glow);
+    .login-box input:focus {
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 16px var(--accent-gold-glow);
     }
 
-    .login-btn {
+    .login-box button {
       width: 100%;
-      padding: 14px;
-      background: linear-gradient(135deg, #e5a93c, #c98b25);
+      background: linear-gradient(135deg, #e5a93c, #c98a24);
       border: none;
       border-radius: 14px;
+      padding: 14px;
       color: #000;
       font-weight: 700;
       font-size: 15px;
       cursor: pointer;
-      transition: all 0.2s;
+      box-shadow: 0 8px 24px var(--accent-gold-glow);
+      transition: all 0.2s ease;
     }
 
-    .login-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px var(--accent-glow);
+    .login-box button:active {
+      transform: scale(0.98);
     }
 
-    .login-error {
+    #login-error {
       color: var(--accent-red);
       font-size: 13px;
-      margin-top: 12px;
+      margin-top: 14px;
       display: none;
+      font-weight: 600;
     }
 
     /* Main Container */
-    .container {
-      max-width: 1180px;
+    #main-content {
+      display: none;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 32px 24px;
+      padding: 24px 20px;
     }
 
-    /* Top Bar */
-    .header {
+    /* Header */
+    header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 32px;
-      padding-bottom: 24px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
       border-bottom: 1px solid var(--card-border);
       flex-wrap: wrap;
       gap: 16px;
@@ -165,42 +180,53 @@
       gap: 16px;
     }
 
-    .brand-avatar {
+    .brand-logo {
       width: 48px;
       height: 48px;
-      background: linear-gradient(135deg, #e5a93c, #945d0b);
+      background: linear-gradient(135deg, #e5a93c, #b47818);
       border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-display);
-      font-weight: 700;
-      color: #000;
-      font-size: 18px;
-    }
-
-    .brand-title h1 {
       font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      font-weight: 800;
+      color: #000;
+      box-shadow: 0 8px 20px var(--accent-gold-glow);
     }
 
-    .brand-title p {
+    .brand-text h1 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-text p {
       color: var(--text-muted);
       font-size: 13px;
+      margin-top: 2px;
     }
 
-    .live-badge {
-      display: inline-flex;
+    .header-actions {
+      display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
+      gap: 10px;
+    }
+
+    .badge-cloud {
       background: rgba(16, 185, 129, 0.12);
       border: 1px solid rgba(16, 185, 129, 0.3);
-      border-radius: 999px;
       color: #34d399;
       font-size: 12px;
       font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .pulse-dot {
@@ -208,398 +234,364 @@
       height: 8px;
       background: #10b981;
       border-radius: 50%;
+      box-shadow: 0 0 10px #10b981;
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
     }
 
     /* KPI Grid */
     .kpi-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 16px;
-      margin-bottom: 36px;
+      margin-bottom: 28px;
     }
 
     .kpi-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 18px;
+      border-radius: 20px;
       padding: 20px;
       backdrop-filter: blur(12px);
-      transition: all 0.2s;
+      transition: all 0.25s ease;
+      cursor: pointer;
     }
 
     .kpi-card:hover {
       border-color: var(--card-hover);
       transform: translateY(-2px);
+      box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5);
     }
 
-    .kpi-label {
-      color: var(--text-muted);
+    .kpi-card.highlight {
+      border-color: rgba(229, 169, 60, 0.35);
+      background: linear-gradient(135deg, rgba(229, 169, 60, 0.08), rgba(18, 24, 38, 0.8));
+    }
+
+    .kpi-title {
       font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
       font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .kpi-value {
       font-family: var(--font-display);
       font-size: 32px;
       font-weight: 700;
-      color: #fff;
+      letter-spacing: -1px;
     }
 
     .kpi-sub {
-      color: var(--text-muted);
       font-size: 12px;
+      color: var(--text-muted);
       margin-top: 6px;
     }
 
-    /* Section Headings */
-    .section-title {
+    /* Global Search Bar */
+    .search-box-container {
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: rgba(18, 24, 38, 0.8);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 14px 20px 14px 46px;
+      color: var(--text);
+      font-size: 15px;
+      outline: none;
+      transition: all 0.25s ease;
+      font-family: var(--font-main);
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 20px var(--accent-gold-glow);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      opacity: 0.6;
+    }
+
+    /* Navigation Tabs */
+    .tabs-nav {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tabs-nav::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 10px 18px;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      letter-spacing: -0.01em;
+      gap: 8px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      font-family: var(--font-main);
     }
 
-    .section-count {
-      font-size: 12px;
-      padding: 2px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.1);
+    .tab-btn:hover {
       color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
     }
 
-    /* Action Cards (Priorities) */
-    .action-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-bottom: 40px;
+    .tab-btn.active {
+      background: rgba(229, 169, 60, 0.12);
+      border-color: rgba(229, 169, 60, 0.3);
+      color: var(--accent-gold);
     }
 
+    .tab-btn.tab-ai.active {
+      background: rgba(139, 92, 246, 0.15);
+      border-color: rgba(139, 92, 246, 0.4);
+      color: #c4b5fd;
+    }
+
+    .badge-count {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 11px;
+    }
+    .tab-btn.active .badge-count {
+      background: var(--accent-gold);
+      color: #000;
+      font-weight: 700;
+    }
+    .tab-btn.tab-ai.active .badge-count {
+      background: #8b5cf6;
+      color: #fff;
+    }
+
+    /* Tab Panes */
+    .tab-pane {
+      display: none;
+    }
+    .tab-pane.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Action Cards */
     .action-card {
-      background: linear-gradient(135deg, rgba(229, 169, 60, 0.06), rgba(18, 24, 38, 0.9));
-      border: 1px solid rgba(229, 169, 60, 0.25);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       border-radius: 20px;
-      padding: 24px;
+      padding: 22px;
+      margin-bottom: 18px;
       backdrop-filter: blur(12px);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      transition: all 0.25s ease;
       position: relative;
       overflow: hidden;
     }
 
-    .action-card::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: var(--accent);
+    .action-card:hover {
+      border-color: var(--card-hover);
+      box-shadow: 0 16px 32px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .action-card.card-resolved {
+      opacity: 0.45;
+      background: rgba(10, 14, 22, 0.4);
     }
 
     .action-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 14px;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
     }
 
     .badge {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 8px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      padding: 5px 12px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .badge-meeting { background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); }
-    .badge-deck { background: rgba(229, 169, 60, 0.2); color: #fcd34d; border: 1px solid rgba(229, 169, 60, 0.4); }
-    .badge-wa { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.4); }
+    .badge-meeting { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .badge-deck { background: rgba(229, 169, 60, 0.15); color: #fbbf24; border: 1px solid rgba(229, 169, 60, 0.3); }
+    .badge-whatsapp { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
 
     .action-source {
-      color: var(--text-muted);
       font-size: 12px;
-    }
-
-    .action-contact {
-      font-family: var(--font-display);
-      font-size: 17px;
-      font-weight: 700;
-      color: #fff;
+      color: var(--text-muted);
+      font-weight: 500;
     }
 
     .action-contact-row {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
+      margin-bottom: 16px;
     }
 
     .action-contact-link {
-      font-family: var(--font-display);
-      font-size: 17px;
-      font-weight: 700;
-      color: #38bdf8;
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: 600;
+      color: #93c5fd;
       text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 10px;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-
-    .action-contact-link:hover {
-      background: rgba(56, 189, 248, 0.2);
-      border-color: #38bdf8;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
-    }
-
-    .btn-action-open {
+      background: rgba(59, 130, 246, 0.1);
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(59, 130, 246, 0.2);
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 7px 16px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.2s ease;
     }
+
+    .btn-action {
+      border: none;
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-family: var(--font-main);
+    }
+
+    .btn-action:active { transform: scale(0.97); }
+
+    .btn-read-full {
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      color: #c4b5fd;
+    }
+    .btn-read-full:hover { background: rgba(139, 92, 246, 0.25); }
 
     .btn-infomaniak {
-      background: linear-gradient(135deg, #e5a93c, #b45309);
-      color: #000;
-      border: 1px solid rgba(229, 169, 60, 0.6);
+      background: rgba(229, 169, 60, 0.15);
+      border: 1px solid rgba(229, 169, 60, 0.35);
+      color: #fcd34d;
     }
+    .btn-infomaniak:hover { background: rgba(229, 169, 60, 0.25); }
 
-    .btn-infomaniak:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(229, 169, 60, 0.4);
-      filter: brightness(1.1);
+    .btn-native {
+      background: rgba(6, 182, 212, 0.15);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      color: #67e8f9;
     }
+    .btn-native:hover { background: rgba(6, 182, 212, 0.25); }
 
     .btn-mailto {
       background: rgba(255, 255, 255, 0.08);
-      color: #cbd5e1;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid var(--card-border);
+      color: var(--text);
     }
+    .btn-mailto:hover { background: rgba(255, 255, 255, 0.14); }
 
-    .btn-mailto:hover {
-      background: rgba(255, 255, 255, 0.16);
-      color: #fff;
-    }
-
-    .btn-native {
-      background: rgba(56, 189, 248, 0.12);
-      color: #7dd3fc;
-      border: 1px solid rgba(56, 189, 248, 0.35);
-    }
-
-    .btn-native:hover {
-      background: rgba(56, 189, 248, 0.25);
-      color: #fff;
-      transform: translateY(-1px);
+    .btn-download-pdf {
+      background: linear-gradient(135deg, rgba(229, 169, 60, 0.25), rgba(229, 169, 60, 0.1));
+      border: 1px solid rgba(229, 169, 60, 0.4);
+      color: #fef08a;
     }
 
     .btn-done {
-      background: rgba(16, 185, 129, 0.14);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
       color: #6ee7b7;
-      border: 1px solid rgba(16, 185, 129, 0.4);
+      margin-left: auto;
     }
-
-    .btn-done:hover {
-      background: rgba(16, 185, 129, 0.28);
-      color: #fff;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
-    }
-
     .btn-done.completed {
-      background: rgba(16, 185, 129, 0.35);
-      color: #fff;
-      border-color: #10b981;
-      cursor: default;
-      pointer-events: none;
+      background: rgba(16, 185, 129, 0.3);
+      color: #a7f3d0;
     }
 
-    .action-card.card-resolved {
-      opacity: 0.55;
-      border-color: rgba(16, 185, 129, 0.35);
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(18, 24, 38, 0.9));
+    /* Message Preview / Expanded Area */
+    .action-message-preview {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: #e2e8f0;
+      margin-bottom: 12px;
+      white-space: pre-line;
+      max-height: 120px;
+      overflow: hidden;
+      position: relative;
+      transition: max-height 0.3s ease;
     }
 
-    .action-card.card-resolved::before {
-      background: #10b981;
+    .action-message-preview.expanded {
+      max-height: 800px;
+      overflow-y: auto;
     }
 
-    .email-link {
-      color: #38bdf8;
-      text-decoration: none;
-      font-family: var(--font-mono);
-      font-weight: 500;
-      transition: all 0.15s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+    .expand-toggle {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-gold);
       cursor: pointer;
-    }
-
-    .email-link:hover {
-      color: #7dd3fc;
       text-decoration: underline;
     }
 
-    .action-details {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 14px 18px;
-      border-radius: 12px;
-      font-size: 13.5px;
-      color: #e2e8f0;
-      line-height: 1.6;
-      white-space: pre-wrap;
-      word-break: break-word;
-      border-left: 3px solid var(--accent);
-      margin: 12px 0;
-      max-height: 450px;
-      overflow-y: auto;
-    }
-
-    .message-cell {
-      white-space: pre-wrap;
-      line-height: 1.55;
-      font-size: 13px;
-      color: #cbd5e1;
-      word-break: break-word;
-      max-width: 580px;
-      max-height: 300px;
-      overflow-y: auto;
-    }
-
     .action-instruction {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #fbbf24;
+      background: rgba(229, 169, 60, 0.08);
+      border-left: 3px solid var(--accent-gold);
+      padding: 10px 14px;
       font-size: 13px;
-      font-weight: 600;
+      color: #fde68a;
+      border-radius: 0 8px 8px 0;
+      margin-top: 10px;
     }
 
-    /* Table Component */
+    /* Tables */
     .table-container {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 20px;
-      overflow-x: auto;
+      overflow: hidden;
       backdrop-filter: blur(12px);
-      margin-bottom: 40px;
-    }
-
-    /* Modern Tab Navigation */
-    .tabs-nav {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 28px;
-      padding: 6px;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      backdrop-filter: blur(16px);
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .tabs-nav::-webkit-scrollbar {
-      display: none;
-    }
-
-    .tab-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 22px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-      background: transparent;
-      color: var(--text-muted);
-      font-family: var(--font-body);
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .tab-btn:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .tab-btn.active {
-      background: linear-gradient(135deg, rgba(229, 169, 60, 0.18), rgba(229, 169, 60, 0.08));
-      border: 1px solid rgba(229, 169, 60, 0.45);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(229, 169, 60, 0.15);
-    }
-
-    .tab-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2px 8px;
-      border-radius: 999px;
-      font-size: 11.5px;
-      font-weight: 700;
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--text-muted);
-    }
-
-    .tab-btn.active .tab-badge {
-      background: rgba(229, 169, 60, 0.3);
-      color: #fcd34d;
-    }
-
-    .tab-badge.badge-warning {
-      background: rgba(245, 158, 11, 0.2);
-      color: #fbbf24;
-      border: 1px solid rgba(245, 158, 11, 0.4);
-    }
-
-    /* Tab Panes */
-    .tab-pane {
-      display: none;
-      animation: fadeIn 0.25s ease;
-    }
-
-    .tab-pane.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     table {
@@ -610,231 +602,564 @@
     }
 
     th {
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(255, 255, 255, 0.03);
       color: var(--text-muted);
-      padding: 14px 20px;
-      font-weight: 600;
       font-size: 12px;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.6px;
+      padding: 16px 20px;
       border-bottom: 1px solid var(--card-border);
     }
 
     td {
       padding: 16px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      vertical-align: middle;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+    td.mono {
+      font-family: monospace;
+      font-size: 13px;
+    }
+
+    .message-cell {
+      max-width: 380px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text-muted);
+    }
+
+    /* AI Copilot View */
+    .ai-view {
+      background: var(--card-bg);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 24px;
+      padding: 24px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+    }
+
+    .ai-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
       border-bottom: 1px solid var(--card-border);
+    }
+
+    .ai-avatar {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 8px 20px var(--accent-purple-glow);
+    }
+
+    .ai-title h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+    }
+    .ai-title p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .ai-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .ai-chip {
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      color: #ddd6fe;
+      padding: 7px 13px;
+      border-radius: 9999px;
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .ai-chip:hover {
+      background: rgba(139, 92, 246, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .ai-messages {
+      min-height: 220px;
+      max-height: 460px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding-right: 6px;
+    }
+
+    .ai-msg {
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 88%;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .ai-msg.user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .ai-msg.assistant {
+      align-self: flex-start;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: #f1f5f9;
+      border-bottom-left-radius: 4px;
+    }
+
+    .ai-msg.assistant p { margin-bottom: 8px; }
+    .ai-msg.assistant p:last-child { margin-bottom: 0; }
+    .ai-msg.assistant ul { padding-left: 20px; margin-bottom: 8px; }
+    .ai-msg.assistant strong { color: #fbbf24; }
+
+    .ai-input-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .ai-input {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      color: var(--text);
+      font-size: 14.5px;
+      outline: none;
+      font-family: var(--font-main);
+      transition: all 0.2s ease;
+    }
+
+    .ai-input:focus {
+      border-color: #8b5cf6;
+      box-shadow: 0 0 16px var(--accent-purple-glow);
+    }
+
+    .ai-send-btn {
+      background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+      border: none;
+      border-radius: 14px;
+      padding: 0 22px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .ai-send-btn:active { transform: scale(0.96); }
+
+    /* Dossiers Tab */
+    .dossier-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 22px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .dossier-info h4 {
+      font-family: var(--font-display);
+      font-size: 17px;
+      margin-bottom: 6px;
       color: var(--text);
     }
 
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    tr:hover td {
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .mono {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      color: #93c5fd;
-      font-size: 12.5px;
-    }
-
-    .empty-state {
-      padding: 32px;
-      text-align: center;
+    .dossier-info p {
       color: var(--text-muted);
-      font-size: 14px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      max-width: 650px;
+      margin-bottom: 8px;
     }
 
-    /* Footer */
-    .footer {
-      text-align: center;
-      color: var(--text-muted);
+    .dossier-meta {
+      display: flex;
+      gap: 12px;
       font-size: 12px;
-      margin-top: 40px;
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(18, 24, 38, 0.95);
+      border: 1px solid var(--accent-gold);
+      border-radius: 14px;
+      padding: 16px 20px;
+      color: #fff;
+      font-size: 13.5px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 20px var(--accent-gold-glow);
+      backdrop-filter: blur(16px);
+      z-index: 10000;
+      display: none;
+      max-width: 360px;
+      line-height: 1.5;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Full Message Modal */
+    #message-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(16px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9998;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: #0f1626;
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      max-width: 720px;
+      width: 100%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.9);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #e2e8f0;
+      white-space: pre-wrap;
+      font-family: var(--font-main);
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
       border-top: 1px solid var(--card-border);
-      padding-top: 24px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    /* Mobile Responsive Optimizations */
+    @media (max-width: 768px) {
+      #main-content { padding: 16px 12px; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .kpi-card { padding: 14px; }
+      .kpi-value { font-size: 26px; }
+      .action-contact-row { flex-direction: column; align-items: stretch; }
+      .btn-action { justify-content: center; width: 100%; }
+      .btn-done { margin-left: 0; }
+      .dossier-card { flex-direction: column; align-items: stretch; }
+      .dossier-actions { width: 100%; display: flex; flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Lock Screen Modal -->
+  <!-- Lock Screen -->
   <div id="lock-screen">
     <div class="login-box">
       <div class="login-logo">NAG</div>
       <h2>Morning Executive Briefing</h2>
-      <p>Portail privé réservé à la Présidence NAG</p>
-      <input type="password" id="passcode" class="login-input" placeholder="Mot de passe d'accès" autofocus>
-      <button class="login-btn" onclick="checkAuth()">Déverrouiller le Briefing</button>
-      <div id="login-error" class="login-error">Mot de passe incorrect.</div>
+      <p>Portail Sécurisé — Next African Generation<br>Accès Exécutif Réservé</p>
+      <input type="password" id="password-input" placeholder="Mot de passe d'accès" autocomplete="current-password" autofocus />
+      <button onclick="checkPassword()">Déverrouiller le Briefing</button>
+      <div id="login-error">Mot de passe incorrect. Réessayez.</div>
     </div>
   </div>
 
-  <!-- Main Briefing View -->
-  <div id="main-content" style="display: none;">
-    <div class="container">
-      
-      <!-- Top Bar -->
-      <div class="header">
-        <div class="brand">
-          <div class="brand-avatar">NAG</div>
-          <div class="brand-title">
-            <h1>Morning Executive Briefing</h1>
-            <p id="generated-at"></p>
+  <!-- Message Full View Modal -->
+  <div id="message-modal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modal-title">E-mail Complet</h3>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-content"></div>
+      <div class="modal-footer" id="modal-actions"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast"></div>
+
+  <!-- Main Content -->
+  <div id="main-content">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">NAG</div>
+        <div class="brand-text">
+          <h1>Morning Executive Briefing</h1>
+          <p id="briefing-date">Chargement du briefing...</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="badge-cloud">
+          <div class="pulse-dot"></div>
+          <span>Cloud 24/7 Actif (GitHub Pages)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- KPI Grid -->
+    <div class="kpi-grid">
+      <div class="kpi-card highlight" onclick="switchTab('tab-actions', document.getElementById('btn-tab-actions'))">
+        <div class="kpi-title">
+          <span>Actions Prioritaires</span>
+          <span>🚨</span>
+        </div>
+        <div class="kpi-value" style="color: var(--accent-gold);" id="kpi-actions">-</div>
+        <div class="kpi-sub">Arbitrage / Envoi de documents</div>
+      </div>
+
+      <div class="kpi-card" onclick="switchTab('tab-active', document.getElementById('btn-tab-active'))">
+        <div class="kpi-title">
+          <span>Échanges en cours</span>
+          <span>💬</span>
+        </div>
+        <div class="kpi-value" style="color: #60a5fa;" id="kpi-active">-</div>
+        <div class="kpi-sub">Discussions institutionnelles</div>
+      </div>
+
+      <div class="kpi-card" onclick="switchTab('tab-deferred', document.getElementById('btn-tab-deferred'))">
+        <div class="kpi-title">
+          <span>Reports Convenus</span>
+          <span>🗓️</span>
+        </div>
+        <div class="kpi-value" style="color: #c4b5fd;" id="kpi-deferred">-</div>
+        <div class="kpi-sub">Reprises calées en 2027</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">
+          <span>E-mails Distribués</span>
+          <span>📨</span>
+        </div>
+        <div class="kpi-value" id="kpi-sent">-</div>
+        <div class="kpi-sub" id="kpi-sent-sub">635 Ministères · 169 Entreprises</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">
+          <span>Bounces Résolus</span>
+          <span>🎯</span>
+        </div>
+        <div class="kpi-value" style="color: #34d399;" id="kpi-bounces">-</div>
+        <div class="kpi-sub">Contacts officiels corrigés</div>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-box-container">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="global-search" class="search-input" placeholder="Rechercher une entreprise, un pays, un email ou un mot-clé..." oninput="handleSearch(this.value)" />
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="tabs-nav">
+      <button id="btn-tab-actions" class="tab-btn active" onclick="switchTab('tab-actions', this)">
+        <span>🚨 À traiter aujourd'hui</span>
+        <span class="badge-count" id="badge-actions">0</span>
+      </button>
+
+      <button id="btn-tab-active" class="tab-btn" onclick="switchTab('tab-active', this)">
+        <span>💬 Échanges constructifs</span>
+        <span class="badge-count" id="badge-active">0</span>
+      </button>
+
+      <button id="btn-tab-deferred" class="tab-btn" onclick="switchTab('tab-deferred', this)">
+        <span>🗓️ Calendrier des reports</span>
+        <span class="badge-count" id="badge-deferred">0</span>
+      </button>
+
+      <button id="btn-tab-dossiers" class="tab-btn" onclick="switchTab('tab-dossiers', this)">
+        <span>📁 Documents & PDF</span>
+        <span class="badge-count" id="badge-dossiers">2</span>
+      </button>
+
+      <button id="btn-tab-ai" class="tab-btn tab-ai" onclick="switchTab('tab-ai', this)">
+        <span>✨ Copilot IA NAG</span>
+        <span class="badge-count" style="background:#8b5cf6; color:#fff;">IA</span>
+      </button>
+    </div>
+
+    <!-- Tab 1: Actions Items -->
+    <div id="tab-actions" class="tab-pane active">
+      <div id="action-container"></div>
+    </div>
+
+    <!-- Tab 2: Active Conversations -->
+    <div id="tab-active" class="tab-pane">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Contact / E-mail</th>
+              <th>Origine</th>
+              <th>Date</th>
+              <th>Extrait / Dernier message</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="active-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 3: Deferred Items -->
+    <div id="tab-deferred" class="tab-pane">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Contact / E-mail</th>
+              <th>Origine</th>
+              <th>Date de Reprise</th>
+              <th>Réf. Suivi</th>
+              <th>Extrait</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="deferred-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 4: Dossiers & PDF Library -->
+    <div id="tab-dossiers" class="tab-pane">
+      <div id="dossiers-container"></div>
+    </div>
+
+    <!-- Tab 5: NAG AI Copilot -->
+    <div id="tab-ai" class="tab-pane">
+      <div class="ai-view">
+        <div class="ai-header">
+          <div class="ai-avatar">🤖</div>
+          <div class="ai-title">
+            <h3>NAG Strategic Copilot</h3>
+            <p>Intelligence exécutive connectée aux 804 contacts, 54 pays, suivis et dossiers officiels.</p>
           </div>
         </div>
-        <div class="live-badge">
-          <div class="pulse-dot"></div>
-          Surveillance Cloud Active (GitHub Actions)
+
+        <div class="ai-chips">
+          <div class="ai-chip" onclick="askAiPrompt('Quelles sont les priorités absolues à traiter aujourd\'hui ?')">🚨 5 Priorités du Jour</div>
+          <div class="ai-chip" onclick="askAiPrompt('Où en sont les dossiers Vodacom Tanzania et Carrinho Empreendimentos ?')">📄 Vodacom & Carrinho</div>
+          <div class="ai-chip" onclick="askAiPrompt('Fais-moi un bilan des contacts en Afrique de l\'Est et Afrique Australe')">🌍 Afrique de l'Est & Australe</div>
+          <div class="ai-chip" onclick="askAiPrompt('Quels sont les reports calés pour 2027 ?')">🗓️ Reports 2027</div>
+          <div class="ai-chip" onclick="askAiPrompt('Combien d\'emails envoyés et quel est le taux de délivrabilité ?')">📊 Bilan de délivrabilité</div>
+        </div>
+
+        <div class="ai-messages" id="ai-messages">
+          <div class="ai-msg assistant">
+            <p>Bonjour Monsieur le Président.</p>
+            <p>Je suis votre <strong>Copilot IA NAG</strong>. Je supervise en temps réel les échanges diplomatiques et commerciaux sur les 54 pays africains (635 ministères et 169 grandes entreprises).</p>
+            <p>Comment puis-je vous éclairer ce matin ? Vous pouvez cliquer sur une suggestion ci-dessus ou me poser directement votre question.</p>
+          </div>
+        </div>
+
+        <div class="ai-input-row">
+          <input type="text" id="ai-input" class="ai-input" placeholder="Posez une question sur un pays, une entreprise, ou demandez une rédaction de mail..." onkeydown="if(event.key==='Enter') sendAiMessage()" />
+          <button class="ai-send-btn" onclick="sendAiMessage()">Envoyer</button>
         </div>
       </div>
-
-      <!-- KPI Grid -->
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-label">E-mails distribués</div>
-          <div class="kpi-value" id="kpi-sent">-</div>
-          <div class="kpi-sub" id="kpi-sent-sub">Ministères + Entreprises</div>
-        </div>
-        <div class="kpi-card" style="cursor: pointer;" onclick="switchTab('tab-actions', document.getElementById('btn-tab-actions'))" title="Cliquer pour afficher les actions à traiter">
-          <div class="kpi-label">Actions prioritaires ↗</div>
-          <div class="kpi-value" style="color: #fbbf24;" id="kpi-actions">-</div>
-          <div class="kpi-sub">Rendez-vous / Plaquettes</div>
-        </div>
-        <div class="kpi-card" style="cursor: pointer;" onclick="switchTab('tab-active', document.getElementById('btn-tab-active'))" title="Cliquer pour voir les échanges en cours">
-          <div class="kpi-label">Échanges en cours ↗</div>
-          <div class="kpi-value" style="color: #38bdf8;" id="kpi-active-conversations">-</div>
-          <div class="kpi-sub">Conversations actives</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Bounces résolus</div>
-          <div class="kpi-value" style="color: #34d399;" id="kpi-bounces">-</div>
-          <div class="kpi-sub">Adresses officielles corrigées</div>
-        </div>
-        <div class="kpi-card" style="cursor: pointer;" onclick="switchTab('tab-deferred', document.getElementById('btn-tab-deferred'))" title="Cliquer pour voir le calendrier 2027">
-          <div class="kpi-label">Reports convenus ↗</div>
-          <div class="kpi-value" style="color: #a78bfa;" id="kpi-deferred">-</div>
-          <div class="kpi-sub">Reprise calée en 2027</div>
-        </div>
-      </div>
-
-      <!-- Tab Navigation Bar -->
-      <div class="tabs-nav">
-        <button class="tab-btn active" id="btn-tab-actions" onclick="switchTab('tab-actions', this)">
-          <span>🎯 À traiter aujourd'hui</span>
-          <span class="tab-badge badge-warning" id="tab-action-count">0</span>
-        </button>
-        <button class="tab-btn" id="btn-tab-active" onclick="switchTab('tab-active', this)">
-          <span>💬 Échanges constructifs</span>
-          <span class="tab-badge" id="tab-active-count">0</span>
-        </button>
-        <button class="tab-btn" id="btn-tab-deferred" onclick="switchTab('tab-deferred', this)">
-          <span>🗓️ Calendrier des reports</span>
-          <span class="tab-badge" id="tab-deferred-count">0</span>
-        </button>
-      </div>
-
-      <!-- Tab 1: Priority Actions -->
-      <div id="tab-actions" class="tab-pane active">
-        <div class="section-title">
-          <span>🎯 À traiter aujourd'hui (Arbitrage humain requis)</span>
-          <span class="section-count" id="action-count">0</span>
-        </div>
-        <div class="action-grid" id="action-container">
-          <!-- Rendered by JS -->
-        </div>
-      </div>
-
-      <!-- Tab 2: Active Discussions -->
-      <div id="tab-active" class="tab-pane">
-        <div class="section-title">
-          <span>💬 Échanges constructifs en cours</span>
-          <span class="section-count" id="active-count">0</span>
-        </div>
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Contact</th>
-                <th>Campagne</th>
-                <th>Dernière activité</th>
-                <th>Détails de l'échange</th>
-              </tr>
-            </thead>
-            <tbody id="active-tbody">
-              <!-- Rendered by JS -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Tab 3: Deferred Schedule -->
-      <div id="tab-deferred" class="tab-pane">
-        <div class="section-title">
-          <span>🗓️ Calendrier des reports d'échanges</span>
-          <span class="section-count" id="deferred-count">0</span>
-        </div>
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Contact officiel</th>
-                <th>Campagne</th>
-                <th>Date convenue</th>
-                <th>Référence</th>
-                <th>Extrait du message</th>
-              </tr>
-            </thead>
-            <tbody id="deferred-tbody">
-              <!-- Rendered by JS -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="footer">
-        Next African Generation (NAG) — Présidence & Secrétariat Général<br>
-        Plateforme d'automatisation diplomatique & d'investissement souverain.
-      </div>
-
     </div>
+
   </div>
 
   <script>
-    const PAYLOAD = {"generated_at": "Friday 13 November 2026 à 09:33 UTC", "password_hash": "d61592fdf27f461d5683e40b50ee05b6e5c15e165c013480435e56b6232210ce", "kpis": {"total_sent": 804, "ministries_sent": 635, "enterprises_sent": 169, "total_resolved_bounces": 216, "active_discussions": 9, "urgent_actions": 5, "deferred_count": 1}, "action_items": [{"source": "Entreprises (contact@)", "contact": "nambrew@ol.na", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:nambrew@ol.na", "message_url": "message://%3C830826c0cb784c68b2697469b8b12a67@PR3P250MB0021.EURP250.PROD.OUTLOOK.COM%3E", "type": "PORTAL", "badge": "🌐 Redirection Portail Web", "badge_class": "badge-meeting", "date": "Récent", "details": "“Thank you for contacting Namibia Breweries Limited.\n\nThis mailbox is not regularly monitored; there’s a chance for a great delay in hearing back from us. This automated response is a kind request for you to rather submit your query via our website at https://nambrew.com/contact-us/contact/ for a faster and swifter response time.”\n\nRegards,\nTeam NBL", "instruction": "Soumettre la proposition via le formulaire officiel en ligne indiqué (ex. nambrew.com/contact-us/contact)."}, {"source": "Entreprises (contact@)", "contact": "mamy.rabearilaza@groupe-filatex.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:mamy.rabearilaza@groupe-filatex.com", "message_url": "message://%3C290ae1dad2844695baba3a58381714f0@MRZP264MB1845.FRAP264.PROD.OUTLOOK.COM%3E", "type": "OFFICIAL_LEFT", "badge": "🔄 Fin de fonction / Départ consigné", "badge_class": "badge-meeting", "date": "Récent", "details": "Notre collègue a quitté le groupe pour de nouveaux challenges. Cette adresse n’est donc plus opérationnelle.", "instruction": "Dirigeant plus en poste ('no longer with the company'). Relances automatiques définitivement stoppées."}, {"source": "Entreprises (contact@)", "contact": "maeva.razafintseheno@groupe-filatex.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:maeva.razafintseheno@groupe-filatex.com", "message_url": "message://%3C715b57a8df564fd2a99322e648774257@PR1P264MB3493.FRAP264.PROD.OUTLOOK.COM%3E", "type": "OFFICIAL_LEFT", "badge": "🔄 Fin de fonction / Départ consigné", "badge_class": "badge-meeting", "date": "Récent", "details": "Notre collègue a quitté le groupe pour de nouveaux challenges. Cette adresse n’est donc plus opérationnelle.", "instruction": "Dirigeant plus en poste ('no longer with the company'). Relances automatiques définitivement stoppées."}, {"source": "Entreprises (contact@)", "contact": "geral@carrinho-sa.com (Cc: info@carrinho-sa.com)", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:geral@carrinho-sa.com?cc=info@carrinho-sa.com&subject=Re:%20Parceria%20Estrat%C3%A9gica%20Next%20African%20Generation%20(NAG)%20%26%20Carrinho%20Empreendimentos,%20S.A.", "message_url": "message://%3CAS8PR03MB76725294BB5EF19C3F62C09186702@AS8PR03MB7672.eurprd03.prod.outlook.com%3E", "type": "DECK", "badge": "📎 Demande de Plaquette — Brouillon Prêt avec PDF joint", "badge_class": "badge-deck", "date": "Aujourd'hui", "details": "Saudações, prezado(a),\n\nEstamos cada vez mais próximos de si.\nNo Grupo Carrinho, valorizamos cada interação e estamos comprometidos em oferecer um atendimento claro, eficiente e próximo.\n\nQueira por favor enviar-nos a sua carta de apresentação, para o e-mail:\nPara: geral@carrinho-sa.com\nCc: info@carrinho-sa.com\n\nCumprimentos,\nJoana da Silva\n[cid:0af45202-e3a7-4c46-8ea5-63fd82ddbe1a]", "instruction": "Un brouillon complet avec le dossier officiel PDF joint est déjà déposé dans vos Brouillons contact@nextafricangeneration.fr. Ouvrez vos Brouillons Infomaniak et cliquez sur Envoyer !"}, {"source": "Entreprises (contact@)", "contact": "customercare@vodacom.co.tz", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:customercare@vodacom.co.tz?subject=Re:%20Strategic%20Partnership:%20Next%20African%20Generation%20(NAG)%20%26%20Vodacom%20Tanzania%20PLC%20%E2%80%94%20Intelligence,%20Institutional%20Access%20%26%20Talent%20(Tanzanie)", "message_url": "message://%3CPR3PR05MB7066CDDD182FDC5D0874F95494702@PR3PR05MB7066.eurprd05.prod.outlook.com%3E", "type": "DECK", "badge": "📎 Demande de Lettre Officielle (PDF) — Brouillon Prêt avec PDF joint", "badge_class": "badge-deck", "date": "Aujourd'hui", "details": "Dear Next African Generation,\n\nThank you for contacting us and for sharing information about your organization and proposed areas of collaboration.\n\nTo enable us to submit your proposal to the relevant department for review, kindly send us an official letter in PDF format outlining the purpose of your request, your proposed collaboration, and any supporting information you would like us to consider.\n\nOnce we receive the document, we will ensure it is forwarded to the appropriate team for further assessment.\n\nKind regards,\n\nEster Kadati\n\nSocial Media Advisor", "instruction": "Un brouillon officiel en anglais avec le mémorandum PDF joint est déjà déposé dans vos Brouillons contact@nextafricangeneration.fr. Ouvrez vos Brouillons Infomaniak et cliquez sur Envoyer !"}], "deferred_items": [{"source": "Ministères (president@)", "contact": "jsithole@dsbd.gov.za", "mailbox_email": "president@nextafricangeneration.fr", "mailbox_name": "president@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/3", "mailto_url": "mailto:jsithole@dsbd.gov.za", "message_url": "message://%3CJN1P275MB195363E4E271C79D585A72E983702@JN1P275MB1953.ZAFP275.PROD.OUTLOOK.COM%3E", "defer_date": "2027-01-11 (+2j battement)", "tracking": "", "snippet": "Dear Mr Getachew, Greetings from the Office of the Deputy Minister. The Deputy Minister, Hon. Jane Sithole, appreciates your correspondence and the interest shown by the Next African Generation (NAG) in supporting South"}], "active_conversations": [{"source": "Ministères (president@)", "contact": "ps@diaspora.go.ke", "mailbox_email": "president@nextafricangeneration.fr", "mailbox_name": "president@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/3", "mailto_url": "mailto:ps@diaspora.go.ke", "message_url": "message://%3CAM8P192MB1089393AFF2C4EF3C38A413BEC712@AM8P192MB1089.EURP192.PROD.OUTLOOK.COM%3E", "date": "2026-11-11", "tracking": "", "snippet": "Warm Greetings We acknowledge receipt of your email. The contents therein have been duly noted and brought to the attention of the Principal Secretary for Diaspora Affairs for guidance. We will revert on the matter. Kind"}, {"source": "Entreprises (contact@)", "contact": "bca@bca.cv", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:bca@bca.cv", "message_url": "message://%3C179447413425.2056.14473729188031717129@SRVCIBI1410.bca.ad%3E", "date": "Récent", "tracking": "", "snippet": "Prezad@ Next African Generation,\nO seu pedido foi registado com sucesso.\n\nDados do Pedido\n\nTicket:\n\n202611120013\n\nSolicitante:\n\nNext African Generation\n\nTeam:\n\nBCA\n\nAviso  -->\nEsta mensagem e quaisquer anexos, podem conter informações confidenciais-->\n\n-->"}, {"source": "Entreprises (contact@)", "contact": "crm@fmnplc.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:crm@fmnplc.com", "message_url": "message://%3Cedbsn9e137855d52010159acade3afe31b1a835886a8e1609f610cbbb90a4702a1309c29ef5e626e7947a239cf56038f1a498_qt2i4_1a1cf0797f4@desk-mailer.zohodesk.com%3E", "date": "Récent", "tracking": "", "snippet": "Dear Next African Generation,\n\nThank you for your request.\n\nWe have opened a case in response to your request, \"Strategic Partnership: Next African Generation (NAG) & Flour Mills of Nigeria Plc (FMN) — Intelligence, Institutional Access & Talent (Nigeria)\" and assigned it to the Customer Care Team. Should you need to follow up on this case, please call our number 02018883506/02018883544 with this reference caseID CAS-52583-P6J0C9. We implore your patience while this is being reviewed. We will do our best to resolve this case as soon as possible.\n\nThank you.\nFMN Customer Care Team.\n\n[cid:image.png@e3e458c9a29ef4b01c2aca4.e3e458c9a]\n\nCustomer Support\nM:02018883544, 02018883506, 0800 003 6455 (Toll free)  Ext:02018883506\n[FMN Group]\nDISCLAIMER:\nThis message contains confidential information and is intended for the above named recipient. If you are not the intended recipient you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender therefore does not accept liability for any errors or omissions in the contents of this message, which arise as a result of e-mail transmission. Flour Mills of Nigeria Plc respects your rights with regards to data privacy and data protection. For information on how Flour Mills of Nigeria Plc manages your information, please read our Privacy Policy at: https://www.fmnplc.com/privacy-policy"}, {"source": "Entreprises (contact@)", "contact": "support@sgtd15.zohodesk.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:support@sgtd15.zohodesk.com", "message_url": "message://%3Cedbsn12e6ed40425e07b0975be6c393a67851e302931c4e9b7aa5578f066f4d9b3d82762e161f7800989eea3a104109a67f6f_zu9pq_1a1cf09791d@desk-mailer.zohodesk.com%3E", "date": "Récent", "tracking": "", "snippet": "Dear contact,\n\nYour ticket has been created with the ticket ID 47328 and subject \"Partenariat\nstratégique Next African Generation (NAG) & Société de Gestion du Terminal à\nConteneurs de Doraleh (SGTD) — Intelligence, Réseau & Talent Sourcing\n(Djibouti)\"\n\nSomeone from our customer service team will review it and respond shortly.\n\nRegards,\nSGTD Support Team.\n\nView ticket"}, {"source": "Entreprises (contact@)", "contact": "support@dahabshiil.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:support@dahabshiil.com", "message_url": "message://%3C6af583debe594_2662190079779.sidekiq-realtime-fd-podeucentral1-main1-green-6fc897c46-msmgh@automation.freshdesk.com%3E", "date": "Récent", "tracking": "", "snippet": "Hello Contact,     Thank you for showing interest in partnering with Dahabshiil.   ​   We have received your request and have passed this information to the relevant department.  ​   Should we wish to discuss this further, we will contact you through the contacts provided.         Kind Regards,  Susan,   Dahabshiil Support."}, {"source": "Entreprises (contact@)", "contact": "crm@fmnplc.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:crm@fmnplc.com", "message_url": "message://%3C1B127BA0832C4F2F85A5F82EE80FBF6D1DD7286E0FCD@CRM.FMNPLC.COM%3E", "date": "Récent", "tracking": "", "snippet": "Dear Next African Generation,\n\nThank you for your request.\n\nWe have opened a case in response to your request, \"Strategic Partnership: Next African Generation (NAG) & Flour Mills of Nigeria Plc (FMN) — Intelligence, Institutional Access & Talent (Nigeria)\" and assigned it to the Customer Care Team. Should you need to follow up on this case, please call our number 02018883506/02018883544 with this reference caseID CAS-52583-P6J0C9. We implore your patience while this is being reviewed. We will do our best to resolve this case as soon as possible.\n\nThank you.\nFMN Customer Care Team.\n\n[cid:image.png@e3e458c9a29ef4b01c2aca4.e3e458c9a]\n\nCustomer Support\nM:02018883544, 02018883506, 0800 003 6455 (Toll free)  Ext:02018883506\n[FMN Group]\nDISCLAIMER:\nThis message contains confidential information and is intended for the above named recipient. If you are not the intended recipient you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender therefore does not accept liability for any errors or omissions in the contents of this message, which arise as a result of e-mail transmission. Flour Mills of Nigeria Plc respects your rights with regards to data privacy and data protection. For information on how Flour Mills of Nigeria Plc manages your information, please read our Privacy Policy at: https://www.fmnplc.com/privacy-policy"}, {"source": "Entreprises (contact@)", "contact": "support@dahabshiil.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:support@dahabshiil.com", "message_url": "message://%3C6af588cb87858_24a212e0683719.sidekiq-frequent-fd-podeucentral1-main1-green-79fb88567-vk59h@email.freshdesk.com%3E", "date": "Récent", "tracking": "", "snippet": "Hello Contact,     Thank you for showing interest in partnering with Dahabshiil.   ​   We have received your request and have passed this information to the relevant department.  ​   Should we wish to discuss this further, we will contact you through the contacts provided.         Kind Regards,  Susan,   Dahabshiil Support."}, {"source": "Entreprises (contact@)", "contact": "eqc@bgfi.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:eqc@bgfi.com", "message_url": "message://%3CAM7PR01MB71084BD49DB933F10239C640C8702@AM7PR01MB7108.eurprd01.prod.exchangelabs.com%3E", "date": "Récent", "tracking": "", "snippet": "Bonjour,\nNous accusons réception de votre courrier adressé à notre Administrateur Directeur Général et reçu sur la messagerie Écoute Qualité Clients.\nCelui-ci a été transmis au Cabinet de notre ADG monsieur NDJEBI pour information et prise en charge.\nNous ne manquerons pas de revenir vers vous dans les meilleurs délais, si nécessaire.\nTout en vous remerciant de l'intérêt que vous portez à BGFIBank Gabon S.A., nous vous prions d'agréer, Monsieur, l'expression de nos salutations distinguées.\nCordialement."}, {"source": "Entreprises (contact@)", "contact": "ca.secretariado@hcb.co.mz", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:ca.secretariado@hcb.co.mz", "message_url": "message://%3CVE1PR01MB5872A8063BE0D29E7275CC44DF702@VE1PR01MB5872.eurprd01.prod.exchangelabs.com%3E", "date": "Récent", "tracking": "", "snippet": "Exmos Senhores,\nBoa tarde.\n\nAcusamos a receção do vosso e-mail, o qual agradecemos e será dado o devido seguimento.\n\nMelhores cumprimentos,\nGlória Massunguine\nSecretária\nGabinete do Conselho de Administração\n________________________________________\nHidroeléctrica de Cahora Bassa, S.A.\nAV.25 de Setembro, Jat 1. 6º andar\nMaputo - Moçambique\nCel: +258 849811630\nTel: +258 21350706\nExt: 706\n\ne-mail: Gloria.Massunguine@hcb.co.mz ;\n[cid:image002.png@01DD72B1.E4263530] [cid:image004.png@01DD72B1.E4263530] Website: www.hcb.co.mz ;\n\n[cid:image005.png@01DD72B1.E4263530] [cid:image006.png@01DD72B1.E4263530]\n[cid:image007.png@01DD72B1.E4263530][cid:image008.gif@01DD72B1.E4263530]"}]};
+    const PAYLOAD = {"generated_at": "Friday 13 November 2026 à 09:38 UTC", "password_hash": "d61592fdf27f461d5683e40b50ee05b6e5c15e165c013480435e56b6232210ce", "kpis": {"total_sent": 804, "ministries_sent": 635, "enterprises_sent": 169, "total_resolved_bounces": 216, "active_discussions": 9, "urgent_actions": 5, "deferred_count": 1}, "action_items": [{"source": "Entreprises (contact@)", "contact": "nambrew@ol.na", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:nambrew@ol.na", "message_url": "message://%3C830826c0cb784c68b2697469b8b12a67@PR3P250MB0021.EURP250.PROD.OUTLOOK.COM%3E", "raw_text": "“Thank you for contacting Namibia Breweries Limited.\n\nThis mailbox is not regularly monitored; there’s a chance for a great delay in hearing back from us. This automated response is a kind request for you to rather submit your query via our website at https://nambrew.com/contact-us/contact/ for a faster and swifter response time.”\n\nRegards,\nTeam NBL", "type": "PORTAL", "badge": "🌐 Redirection Portail Web", "badge_class": "badge-meeting", "date": "Récent", "details": "“Thank you for contacting Namibia Breweries Limited.\n\nThis mailbox is not regularly monitored; there’s a chance for a great delay in hearing back from us. This automated response is a kind request for you to rather submit your query via our website at https://nambrew.com/contact-us/contact/ for a faster and swifter response time.”\n\nRegards,\nTeam NBL", "instruction": "Soumettre la proposition via le formulaire officiel en ligne indiqué (ex. nambrew.com/contact-us/contact)."}, {"source": "Entreprises (contact@)", "contact": "mamy.rabearilaza@groupe-filatex.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:mamy.rabearilaza@groupe-filatex.com", "message_url": "message://%3C290ae1dad2844695baba3a58381714f0@MRZP264MB1845.FRAP264.PROD.OUTLOOK.COM%3E", "raw_text": "Notre collègue a quitté le groupe pour de nouveaux challenges. Cette adresse n’est donc plus opérationnelle.", "type": "OFFICIAL_LEFT", "badge": "🔄 Fin de fonction / Départ consigné", "badge_class": "badge-meeting", "date": "Récent", "details": "Notre collègue a quitté le groupe pour de nouveaux challenges. Cette adresse n’est donc plus opérationnelle.", "instruction": "Dirigeant plus en poste ('no longer with the company'). Relances automatiques définitivement stoppées."}, {"source": "Entreprises (contact@)", "contact": "maeva.razafintseheno@groupe-filatex.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:maeva.razafintseheno@groupe-filatex.com", "message_url": "message://%3C715b57a8df564fd2a99322e648774257@PR1P264MB3493.FRAP264.PROD.OUTLOOK.COM%3E", "raw_text": "Notre collègue a quitté le groupe pour de nouveaux challenges. Cette adresse n’est donc plus opérationnelle.", "type": "OFFICIAL_LEFT", "badge": "🔄 Fin de fonction / Départ consigné", "badge_class": "badge-meeting", "date": "Récent", "details": "Notre collègue a quitté le groupe pour de nouveaux challenges. Cette adresse n’est donc plus opérationnelle.", "instruction": "Dirigeant plus en poste ('no longer with the company'). Relances automatiques définitivement stoppées."}, {"source": "Entreprises (contact@)", "contact": "geral@carrinho-sa.com (Cc: info@carrinho-sa.com)", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:geral@carrinho-sa.com?cc=info@carrinho-sa.com&subject=Re:%20Parceria%20Estrat%C3%A9gica%20Next%20African%20Generation%20(NAG)%20%26%20Carrinho%20Empreendimentos,%20S.A.", "message_url": "message://%3CAS8PR03MB76725294BB5EF19C3F62C09186702@AS8PR03MB7672.eurprd03.prod.outlook.com%3E", "raw_text": "Saudações, prezado(a),\n\nEstamos cada vez mais próximos de si.\nNo Grupo Carrinho, valorizamos cada interação e estamos comprometidos em oferecer um atendimento claro, eficiente e próximo.\n\nQueira por favor enviar-nos a sua carta de apresentação, para o e-mail:\nPara: geral@carrinho-sa.com\nCc: info@carrinho-sa.com\n\nCumprimentos,\nJoana da Silva\n[cid:0af45202-e3a7-4c46-8ea5-63fd82ddbe1a]", "type": "DECK", "badge": "📎 Demande de Plaquette — Brouillon Prêt avec PDF joint", "badge_class": "badge-deck", "date": "Aujourd'hui", "details": "Saudações, prezado(a),\n\nEstamos cada vez mais próximos de si.\nNo Grupo Carrinho, valorizamos cada interação e estamos comprometidos em oferecer um atendimento claro, eficiente e próximo.\n\nQueira por favor enviar-nos a sua carta de apresentação, para o e-mail:\nPara: geral@carrinho-sa.com\nCc: info@carrinho-sa.com\n\nCumprimentos,\nJoana da Silva\n[cid:0af45202-e3a7-4c46-8ea5-63fd82ddbe1a]", "pdf_filename": "Apresentacao_NAG.pdf", "draft_status": "Brouillon prêt dans Infomaniak avec Apresentacao_NAG.pdf joint", "instruction": "Un brouillon officiel complet avec le dossier officiel PDF joint est déposé dans vos Brouillons contact@nextafricangeneration.fr. Ouvrez vos Brouillons Infomaniak et validez l'envoi !"}, {"source": "Entreprises (contact@)", "contact": "customercare@vodacom.co.tz", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:customercare@vodacom.co.tz?subject=Re:%20Strategic%20Partnership:%20Next%20African%20Generation%20(NAG)%20%26%20Vodacom%20Tanzania%20PLC%20%E2%80%94%20Intelligence,%20Institutional%20Access%20%26%20Talent%20(Tanzanie)", "message_url": "message://%3CPR3PR05MB7066CDDD182FDC5D0874F95494702@PR3PR05MB7066.eurprd05.prod.outlook.com%3E", "raw_text": "Dear Next African Generation,\n\nThank you for contacting us and for sharing information about your organization and proposed areas of collaboration.\n\nTo enable us to submit your proposal to the relevant department for review, kindly send us an official letter in PDF format outlining the purpose of your request, your proposed collaboration, and any supporting information you would like us to consider.\n\nOnce we receive the document, we will ensure it is forwarded to the appropriate team for further assessment.\n\nKind regards,\n\nEster Kadati\n\nSocial Media Advisor", "type": "DECK", "badge": "📎 Demande de Lettre Officielle (PDF) — Brouillon Prêt avec PDF joint", "badge_class": "badge-deck", "date": "Aujourd'hui", "details": "Dear Next African Generation,\n\nThank you for contacting us and for sharing information about your organization and proposed areas of collaboration.\n\nTo enable us to submit your proposal to the relevant department for review, kindly send us an official letter in PDF format outlining the purpose of your request, your proposed collaboration, and any supporting information you would like us to consider.\n\nOnce we receive the document, we will ensure it is forwarded to the appropriate team for further assessment.\n\nKind regards,\n\nEster Kadati\n\nSocial Media Advisor", "pdf_filename": "Presentation_NAG.pdf", "draft_status": "Brouillon prêt dans Infomaniak avec Presentation_NAG.pdf joint (2 pages)", "instruction": "Un brouillon officiel en anglais avec le mémorandum PDF joint est déposé dans vos Brouillons contact@nextafricangeneration.fr. Ouvrez vos Brouillons Infomaniak et validez l'envoi !"}], "deferred_items": [{"source": "Ministères (president@)", "contact": "jsithole@dsbd.gov.za", "mailbox_email": "president@nextafricangeneration.fr", "mailbox_name": "president@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/3", "mailto_url": "mailto:jsithole@dsbd.gov.za", "message_url": "message://%3CJN1P275MB195363E4E271C79D585A72E983702@JN1P275MB1953.ZAFP275.PROD.OUTLOOK.COM%3E", "raw_text": "Dear Mr Getachew, Greetings from the Office of the Deputy Minister. The Deputy Minister, Hon. Jane Sithole, appreciates your correspondence and the interest shown by the Next African Generation (NAG) in supporting South", "defer_date": "2027-01-11", "tracking": "", "snippet": "Dear Mr Getachew, Greetings from the Office of the Deputy Minister. The Deputy Minister, Hon. Jane Sithole, appreciates your correspondence and the interest shown by the Next African Generation (NAG) in supporting South"}], "active_conversations": [{"source": "Ministères (president@)", "contact": "ps@diaspora.go.ke", "mailbox_email": "president@nextafricangeneration.fr", "mailbox_name": "president@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/3", "mailto_url": "mailto:ps@diaspora.go.ke", "message_url": "message://%3CAM8P192MB1089393AFF2C4EF3C38A413BEC712@AM8P192MB1089.EURP192.PROD.OUTLOOK.COM%3E", "raw_text": "Warm Greetings We acknowledge receipt of your email. The contents therein have been duly noted and brought to the attention of the Principal Secretary for Diaspora Affairs for guidance. We will revert on the matter. Kind", "date": "2026-11-11", "tracking": "", "snippet": "Warm Greetings We acknowledge receipt of your email. The contents therein have been duly noted and brought to the attention of the Principal Secretary for Diaspora Affairs for guidance. We will revert on the matter. Kind"}, {"source": "Entreprises (contact@)", "contact": "bca@bca.cv", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:bca@bca.cv", "message_url": "message://%3C179447413425.2056.14473729188031717129@SRVCIBI1410.bca.ad%3E", "raw_text": "Prezad@ Next African Generation,\nO seu pedido foi registado com sucesso.\n\nDados do Pedido\n\nTicket:\n\n202611120013\n\nSolicitante:\n\nNext African Generation\n\nTeam:\n\nBCA\n\nAviso  -->\nEsta mensagem e quaisquer anexos, podem conter informações confidenciais-->\n\n-->", "date": "Récent", "tracking": "", "snippet": "Prezad@ Next African Generation,\nO seu pedido foi registado com sucesso.\n\nDados do Pedido\n\nTicket:\n\n202611120013\n\nSolicitante:\n\nNext African Generation\n\nTeam:\n\nBCA\n\nAviso  -->\nEsta mensagem e quaisquer anexos, podem conter informações confidenciais-->\n\n-->"}, {"source": "Entreprises (contact@)", "contact": "crm@fmnplc.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:crm@fmnplc.com", "message_url": "message://%3Cedbsn9e137855d52010159acade3afe31b1a835886a8e1609f610cbbb90a4702a1309c29ef5e626e7947a239cf56038f1a498_qt2i4_1a1cf0797f4@desk-mailer.zohodesk.com%3E", "raw_text": "Dear Next African Generation,\n\nThank you for your request.\n\nWe have opened a case in response to your request, \"Strategic Partnership: Next African Generation (NAG) & Flour Mills of Nigeria Plc (FMN) — Intelligence, Institutional Access & Talent (Nigeria)\" and assigned it to the Customer Care Team. Should you need to follow up on this case, please call our number 02018883506/02018883544 with this reference caseID CAS-52583-P6J0C9. We implore your patience while this is being reviewed. We will do our best to resolve this case as soon as possible.\n\nThank you.\nFMN Customer Care Team.\n\n[cid:image.png@e3e458c9a29ef4b01c2aca4.e3e458c9a]\n\nCustomer Support\nM:02018883544, 02018883506, 0800 003 6455 (Toll free)  Ext:02018883506\n[FMN Group]\nDISCLAIMER:\nThis message contains confidential information and is intended for the above named recipient. If you are not the intended recipient you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender therefore does not accept liability for any errors or omissions in the contents of this message, which arise as a result of e-mail transmission. Flour Mills of Nigeria Plc respects your rights with regards to data privacy and data protection. For information on how Flour Mills of Nigeria Plc manages your information, please read our Privacy Policy at: https://www.fmnplc.com/privacy-policy", "date": "Récent", "tracking": "", "snippet": "Dear Next African Generation,\n\nThank you for your request.\n\nWe have opened a case in response to your request, \"Strategic Partnership: Next African Generation (NAG) & Flour Mills of Nigeria Plc (FMN) — Intelligence, Institutional Access & Talent (Nigeria)\" and assigned it to the Customer Care Team. Should you need to follow up on this case, please call our number 02018883506/02018883544 with this reference caseID CAS-52583-P6J0C9. We implore your patience while this is being reviewed. We will do our best to resolve this case as soon as possible.\n\nThank you.\nFMN Customer Care Team.\n\n[cid:image.png@e3e458c9a29ef4b01c2aca4.e3e458c9a]\n\nCustomer Support\nM:02018883544, 02018883506, 0800 003 6455 (Toll free)  Ext:02018883506\n[FMN Group]\nDISCLAIMER:\nThis message contains confidential information and is intended for the above named recipient. If you are not the intended recipient you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender therefore does not accept liability for any errors or omissions in the contents of this message, which arise as a result of e-mail transmission. Flour Mills of Nigeria Plc respects your rights with regards to data privacy and data protection. For information on how Flour Mills of Nigeria Plc manages your information, please read our Privacy Policy at: https://www.fmnplc.com/privacy-policy"}, {"source": "Entreprises (contact@)", "contact": "support@sgtd15.zohodesk.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:support@sgtd15.zohodesk.com", "message_url": "message://%3Cedbsn12e6ed40425e07b0975be6c393a67851e302931c4e9b7aa5578f066f4d9b3d82762e161f7800989eea3a104109a67f6f_zu9pq_1a1cf09791d@desk-mailer.zohodesk.com%3E", "raw_text": "Dear contact,\n\nYour ticket has been created with the ticket ID 47328 and subject \"Partenariat\nstratégique Next African Generation (NAG) & Société de Gestion du Terminal à\nConteneurs de Doraleh (SGTD) — Intelligence, Réseau & Talent Sourcing\n(Djibouti)\"\n\nSomeone from our customer service team will review it and respond shortly.\n\nRegards,\nSGTD Support Team.\n\nView ticket", "date": "Récent", "tracking": "", "snippet": "Dear contact,\n\nYour ticket has been created with the ticket ID 47328 and subject \"Partenariat\nstratégique Next African Generation (NAG) & Société de Gestion du Terminal à\nConteneurs de Doraleh (SGTD) — Intelligence, Réseau & Talent Sourcing\n(Djibouti)\"\n\nSomeone from our customer service team will review it and respond shortly.\n\nRegards,\nSGTD Support Team.\n\nView ticket"}, {"source": "Entreprises (contact@)", "contact": "support@dahabshiil.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:support@dahabshiil.com", "message_url": "message://%3C6af583debe594_2662190079779.sidekiq-realtime-fd-podeucentral1-main1-green-6fc897c46-msmgh@automation.freshdesk.com%3E", "raw_text": "Hello Contact,     Thank you for showing interest in partnering with Dahabshiil.   ​   We have received your request and have passed this information to the relevant department.  ​   Should we wish to discuss this further, we will contact you through the contacts provided.         Kind Regards,  Susan,   Dahabshiil Support.\n\nOn\n\nThu, 12 Nov at 12:16 PM\n\n,  Contact    wrote:\n\nDear Abdirashid Duale,\n\nI am writing to you as President & Founder of Next African Generation (NAG), a Paris-headquartered international organization uniting 50+ high-potential young executives, lawyers, engineers, and policy analysts from 24 world-leading universities (Oxford, London Business School, Columbia, NYU, HEC Paris, ESSEC, ESCP, Sciences Po) active across 20+ countries in Africa, Europe, and North America.\n\nWe closely follow Dahabshiil Group (Dahabshil Bank International / Dahabshiil Transfer Services)'s strategic footprint in Somalie (Mogadishu / Hargeisa) within Remittances, Money Transfer & Islamic Banking, notably your partnerships with United Nations agencies (WFP, UNHCR), Mastercard, international money remittance corridors. We also recognize the critical operational and regulatory headwinds your teams navigate today (Countering correspondent banking de-risking by major Western clearing banks; Complying with stringent international AML/CFT standards and foreign regulatory audits across diaspora markets).\n\nLeveraging our institutional and business ecosystem — centered around our flagship portal nextafricangeneration.fr, direct ties with 40+ African embassies, 100+ connected business leaders, our recent institutional summits including our diplomatic forums at the Embassy of Liberia in Paris (December 2025 & April 2026), the Invest in Africa Forum (CIAN / L'Opinion, April 2026), the African Union – France Strategic Dialogue (April 2026), the Invest in Zambia Summit (June 2026), our bilateral meetings at the French Senate and National Assembly with France-Africa parliamentary friendship groups (June–July 2026), upcoming engagements at the Embassy of Zambia on November 21 and the Embassy of the Democratic Republic of the Congo on January 30, as well as our complementary B2B platform nagbusiness.com (54 countries, 10 languages) — NAG can deliver targeted value to Dahabshiil Group (Dahabshil Bank International / Dahabshiil Transfer Services):\n\nStakeholder & Power Mapping and institutional access (central banks, regulators, Ministries of Finance, and 40+ partner embassies)\n\nInformation Intelligence & Technical Policy Briefs (sovereign risk, AML/CFT compliance, FX liquidity dynamics, cross-border tax/EU directives)\n\nStrategic B2B/B2G Matchmaking & Due Diligence with European and African institutional investors (alumni of Deloitte, KPMG, Forvis Mazars, LBO France, Ecobank)\n\nElite Talent Sourcing across 24 top universities (Oxford, London Business School, Columbia, NYU, HEC Paris, ESSEC, ESCP, Sciences Po)\n\nOur operational team is backed by members across 24 leading universities (Oxford, LBS, Columbia, NYU, HEC Paris, ESCP, Sciences Po) with backgrounds at Deloitte, KPMG, Forvis Mazars, Mastercard, HP, and the World Bank, enabling us to deploy rigorous, bespoke technical deliverables for your leadership.\n\nI would welcome a brief 15–20 minute introductory call to explore how NAG can support Dahabshiil Group (Dahabshil Bank International / Dahabshiil Transfer Services)'s strategic priorities.\n\nShould you wish to reply, you may write to this address (contact@nextafricangeneration.fr) or reach me directly on my personal email: president@nextafricangeneration.fr.\n\nYours sincerely,\n\nNext African Generation\n\nGETACHEW Yetayal  |  President & Founder\n\nNon-Profit Association (French Law 1901) · RNA W751276194 · SIREN 941287476\n\nTel.: +33 6 46 33 77 28\n\nEmail: contact@nextafricangeneration.fr\n\nDirect Reply (President): president@nextafricangeneration.fr\n\nHeadquarters: 7 rue de Madrid, 75008 Paris · France\n\nOfficial Portals: nextafricangeneration.fr  |  nagbusiness.com", "date": "Récent", "tracking": "", "snippet": "Hello Contact,     Thank you for showing interest in partnering with Dahabshiil.   ​   We have received your request and have passed this information to the relevant department.  ​   Should we wish to discuss this further, we will contact you through the contacts provided.         Kind Regards,  Susan,   Dahabshiil Support."}, {"source": "Entreprises (contact@)", "contact": "crm@fmnplc.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:crm@fmnplc.com", "message_url": "message://%3C1B127BA0832C4F2F85A5F82EE80FBF6D1DD7286E0FCD@CRM.FMNPLC.COM%3E", "raw_text": "Dear Next African Generation,\n\nThank you for your request.\n\nWe have opened a case in response to your request, \"Strategic Partnership: Next African Generation (NAG) & Flour Mills of Nigeria Plc (FMN) — Intelligence, Institutional Access & Talent (Nigeria)\" and assigned it to the Customer Care Team. Should you need to follow up on this case, please call our number 02018883506/02018883544 with this reference caseID CAS-52583-P6J0C9. We implore your patience while this is being reviewed. We will do our best to resolve this case as soon as possible.\n\nThank you.\nFMN Customer Care Team.\n\n[cid:image.png@e3e458c9a29ef4b01c2aca4.e3e458c9a]\n\nCustomer Support\nM:02018883544, 02018883506, 0800 003 6455 (Toll free)  Ext:02018883506\n[FMN Group]\nDISCLAIMER:\nThis message contains confidential information and is intended for the above named recipient. If you are not the intended recipient you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender therefore does not accept liability for any errors or omissions in the contents of this message, which arise as a result of e-mail transmission. Flour Mills of Nigeria Plc respects your rights with regards to data privacy and data protection. For information on how Flour Mills of Nigeria Plc manages your information, please read our Privacy Policy at: https://www.fmnplc.com/privacy-policy", "date": "Récent", "tracking": "", "snippet": "Dear Next African Generation,\n\nThank you for your request.\n\nWe have opened a case in response to your request, \"Strategic Partnership: Next African Generation (NAG) & Flour Mills of Nigeria Plc (FMN) — Intelligence, Institutional Access & Talent (Nigeria)\" and assigned it to the Customer Care Team. Should you need to follow up on this case, please call our number 02018883506/02018883544 with this reference caseID CAS-52583-P6J0C9. We implore your patience while this is being reviewed. We will do our best to resolve this case as soon as possible.\n\nThank you.\nFMN Customer Care Team.\n\n[cid:image.png@e3e458c9a29ef4b01c2aca4.e3e458c9a]\n\nCustomer Support\nM:02018883544, 02018883506, 0800 003 6455 (Toll free)  Ext:02018883506\n[FMN Group]\nDISCLAIMER:\nThis message contains confidential information and is intended for the above named recipient. If you are not the intended recipient you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted, lost, destroyed, arrive late or incomplete, or contain viruses. The sender therefore does not accept liability for any errors or omissions in the contents of this message, which arise as a result of e-mail transmission. Flour Mills of Nigeria Plc respects your rights with regards to data privacy and data protection. For information on how Flour Mills of Nigeria Plc manages your information, please read our Privacy Policy at: https://www.fmnplc.com/privacy-policy"}, {"source": "Entreprises (contact@)", "contact": "support@dahabshiil.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:support@dahabshiil.com", "message_url": "message://%3C6af588cb87858_24a212e0683719.sidekiq-frequent-fd-podeucentral1-main1-green-79fb88567-vk59h@email.freshdesk.com%3E", "raw_text": "Hello Contact,     Thank you for showing interest in partnering with Dahabshiil.   ​   We have received your request and have passed this information to the relevant department.  ​   Should we wish to discuss this further, we will contact you through the contacts provided.         Kind Regards,  Susan,   Dahabshiil Support.\n\nOn\n\nThu, 12 Nov at 12:16 PM\n\n,  Contact    wrote:\n\nDear Abdirashid Duale,\n\nI am writing to you as President & Founder of Next African Generation (NAG), a Paris-headquartered international organization uniting 50+ high-potential young executives, lawyers, engineers, and policy analysts from 24 world-leading universities (Oxford, London Business School, Columbia, NYU, HEC Paris, ESSEC, ESCP, Sciences Po) active across 20+ countries in Africa, Europe, and North America.\n\nWe closely follow Dahabshiil Group (Dahabshil Bank International / Dahabshiil Transfer Services)'s strategic footprint in Somalie (Mogadishu / Hargeisa) within Remittances, Money Transfer & Islamic Banking, notably your partnerships with United Nations agencies (WFP, UNHCR), Mastercard, international money remittance corridors. We also recognize the critical operational and regulatory headwinds your teams navigate today (Countering correspondent banking de-risking by major Western clearing banks; Complying with stringent international AML/CFT standards and foreign regulatory audits across diaspora markets).\n\nLeveraging our institutional and business ecosystem — centered around our flagship portal nextafricangeneration.fr, direct ties with 40+ African embassies, 100+ connected business leaders, our recent institutional summits including our diplomatic forums at the Embassy of Liberia in Paris (December 2025 & April 2026), the Invest in Africa Forum (CIAN / L'Opinion, April 2026), the African Union – France Strategic Dialogue (April 2026), the Invest in Zambia Summit (June 2026), our bilateral meetings at the French Senate and National Assembly with France-Africa parliamentary friendship groups (June–July 2026), upcoming engagements at the Embassy of Zambia on November 21 and the Embassy of the Democratic Republic of the Congo on January 30, as well as our complementary B2B platform nagbusiness.com (54 countries, 10 languages) — NAG can deliver targeted value to Dahabshiil Group (Dahabshil Bank International / Dahabshiil Transfer Services):\n\nStakeholder & Power Mapping and institutional access (central banks, regulators, Ministries of Finance, and 40+ partner embassies)\n\nInformation Intelligence & Technical Policy Briefs (sovereign risk, AML/CFT compliance, FX liquidity dynamics, cross-border tax/EU directives)\n\nStrategic B2B/B2G Matchmaking & Due Diligence with European and African institutional investors (alumni of Deloitte, KPMG, Forvis Mazars, LBO France, Ecobank)\n\nElite Talent Sourcing across 24 top universities (Oxford, London Business School, Columbia, NYU, HEC Paris, ESSEC, ESCP, Sciences Po)\n\nOur operational team is backed by members across 24 leading universities (Oxford, LBS, Columbia, NYU, HEC Paris, ESCP, Sciences Po) with backgrounds at Deloitte, KPMG, Forvis Mazars, Mastercard, HP, and the World Bank, enabling us to deploy rigorous, bespoke technical deliverables for your leadership.\n\nI would welcome a brief 15–20 minute introductory call to explore how NAG can support Dahabshiil Group (Dahabshil Bank International / Dahabshiil Transfer Services)'s strategic priorities.\n\nShould you wish to reply, you may write to this address (contact@nextafricangeneration.fr) or reach me directly on my personal email: president@nextafricangeneration.fr.\n\nYours sincerely,\n\nNext African Generation\n\nGETACHEW Yetayal  |  President & Founder\n\nNon-Profit Association (French Law 1901) · RNA W751276194 · SIREN 941287476\n\nTel.: +33 6 46 33 77 28\n\nEmail: contact@nextafricangeneration.fr\n\nDirect Reply (President): president@nextafricangeneration.fr\n\nHeadquarters: 7 rue de Madrid, 75008 Paris · France\n\nOfficial Portals: nextafricangeneration.fr  |  nagbusiness.com", "date": "Récent", "tracking": "", "snippet": "Hello Contact,     Thank you for showing interest in partnering with Dahabshiil.   ​   We have received your request and have passed this information to the relevant department.  ​   Should we wish to discuss this further, we will contact you through the contacts provided.         Kind Regards,  Susan,   Dahabshiil Support."}, {"source": "Entreprises (contact@)", "contact": "eqc@bgfi.com", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:eqc@bgfi.com", "message_url": "message://%3CAM7PR01MB71084BD49DB933F10239C640C8702@AM7PR01MB7108.eurprd01.prod.exchangelabs.com%3E", "raw_text": "Bonjour,\nNous accusons réception de votre courrier adressé à notre Administrateur Directeur Général et reçu sur la messagerie Écoute Qualité Clients.\nCelui-ci a été transmis au Cabinet de notre ADG monsieur NDJEBI pour information et prise en charge.\nNous ne manquerons pas de revenir vers vous dans les meilleurs délais, si nécessaire.\nTout en vous remerciant de l'intérêt que vous portez à BGFIBank Gabon S.A., nous vous prions d'agréer, Monsieur, l'expression de nos salutations distinguées.\nCordialement.", "date": "Récent", "tracking": "", "snippet": "Bonjour,\nNous accusons réception de votre courrier adressé à notre Administrateur Directeur Général et reçu sur la messagerie Écoute Qualité Clients.\nCelui-ci a été transmis au Cabinet de notre ADG monsieur NDJEBI pour information et prise en charge.\nNous ne manquerons pas de revenir vers vous dans les meilleurs délais, si nécessaire.\nTout en vous remerciant de l'intérêt que vous portez à BGFIBank Gabon S.A., nous vous prions d'agréer, Monsieur, l'expression de nos salutations distinguées.\nCordialement."}, {"source": "Entreprises (contact@)", "contact": "ca.secretariado@hcb.co.mz", "mailbox_email": "contact@nextafricangeneration.fr", "mailbox_name": "contact@nextafricangeneration.fr", "mailbox_url": "https://ksuite.infomaniak.com/1304041/mail/2", "mailto_url": "mailto:ca.secretariado@hcb.co.mz", "message_url": "message://%3CVE1PR01MB5872A8063BE0D29E7275CC44DF702@VE1PR01MB5872.eurprd01.prod.exchangelabs.com%3E", "raw_text": "Exmos Senhores,\nBoa tarde.\n\nAcusamos a receção do vosso e-mail, o qual agradecemos e será dado o devido seguimento.\n\nMelhores cumprimentos,\nGlória Massunguine\nSecretária\nGabinete do Conselho de Administração\n________________________________________\nHidroeléctrica de Cahora Bassa, S.A.\nAV.25 de Setembro, Jat 1. 6º andar\nMaputo - Moçambique\nCel: +258 849811630\nTel: +258 21350706\nExt: 706\n\ne-mail: Gloria.Massunguine@hcb.co.mz ;\n[cid:image002.png@01DD72B1.E4263530] [cid:image004.png@01DD72B1.E4263530] Website: www.hcb.co.mz ;\n\n[cid:image005.png@01DD72B1.E4263530] [cid:image006.png@01DD72B1.E4263530]\n[cid:image007.png@01DD72B1.E4263530][cid:image008.gif@01DD72B1.E4263530]\n\nFrom: Next African Generation\nSent: quinta-feira, 12 de novembro de 2026 11:17\nTo: Conselho Administração Secretariado Maputo\nCc: Conselho Administração Secretariado Songo\nSubject: [Externo] Parceria Estratégica Next African Generation (NAG) & Hidroeléctrica de Cahora Bassa, S.A. (HCB) — Inteligência, Rede Institucional & Talentos (Mozambique)\n\n⚠ ATENÇÃO! E-Mail Externo: Tenha cuidado ao clicar em links ou abrir anexos. Não responda, não clique em links, não visualize imagens e nem abra anexos excepto se reconhecer o remetente e souber que o conteúdo é seguro. Em caso de dúvidas contacte helpdesk@hcb.co.mz .\n\nExmo(a). Sr(a). Tomás Matola,\n\nEscrevo-lhe na qualidade de Presidente e Fundador da Next African Generation (NAG), organização internacional sediada em Paris que reúne mais de 50 jovens executivos, juristas, engenheiros e analistas formados em 24 universidades de referência mundial (HEC Paris, ESCP, Sciences Po, Oxford, Columbia, Polytechnique Montréal), com presença ativa em mais de 20 países em África, Europa e América do Norte.\n\nAcompanhamos com elevado interesse o percurso estratégico da Hidroeléctrica de Cahora Bassa, S.A. (HCB) (Songo (Tete) / Maputo, Mozambique) no setor de Energia Renovável, Produção e Transporte Hidroelétrico, bem como as suas parcerias com Eskom (África do Sul), Electricidade de Moçambique (EDM), ZESA (Zimbabué), Southern African Power Pool (SAPP). Temos plena consciência dos desafios operacionais e regulamentares atuais que enfrentam (Variabilidade hidrológica decorrente de secas regionais que reduzem o caudal da bacia do Rio Zambeze e a capacidade geradora; Execução do complexo e oneroso programa de reabilitação e modernização dos geradores e subestação conversora do Songo).\n\nAtravés do nosso ecossistema institucional e empresarial — centrado no nosso portal principal nextafricangeneration.fr , apoiado por relações diretas com mais de 40 embaixadas africanas, mais de 100 líderes empresariais conectados, os nossos eventos institucionais recentes (as nossas cimeiras diplomáticas na Embaixada da Libéria em Paris (dezembro de 2025 e abril de 2026), o nosso fórum na Embaixada da Etiópia (março de 2026, com mais de 120 diplomatas e líderes empresariais), o Fórum Invest in Africa (CIAN, abril de 2026), o Diálogo Estratégico União Africana – França (abril de 2026), o Invest in Zambia Summit (junho de 2026), os nossos encontros parlamentares no Senado e na Assembleia Nacional francesa com os grupos de amizade França-África) e futuros (na Embaixada da Zâmbia a 21 de novembro e na Embaixada da República Democrática do Congo a 30 de janeiro), bem como a nossa plataforma complementar nagbusiness.com  (54 países, 10 idiomas) — a NAG pode apoiar a Hidroeléctrica de Cahora Bassa, S.A. (HCB) nas seguintes frentes:\n\n*   Mapeamento de poder e acesso institucional (ministérios setoriais, reguladores e mais de 40 embaixadas parceiras)\n*   Inteligência estratégica e Policy Briefs técnicos (riscos regulatórios, financiamento, ESG e cadeias de abastecimento)\n*   Conexão estratégica B2B e B2G com decisores e investidores em África e na Europa, incluindo acesso a concursos públicos na nossa plataforma nagbusiness.com (54 países)\n*   Talent Sourcing de elite através da nossa rede de 24 universidades internacionais (HEC Paris, ESCP, Sciences Po, Oxford, Columbia, Polytechnique Montréal)\n\nA nossa equipa operacional é incluindo a nossa Presidente de País em Moçambique (Eunice Russoca, gestora de projetos internacionais trilingue FR/EN/PT), garantindo entregas técnicas rigorosas e adaptadas à realidade do vosso mercado.\n\nTeria todo o gosto em agendar uma breve reunião de 15 a 20 minutos para explorar sinergias concretas com a Hidroeléctrica de Cahora Bassa, S.A. (HCB).\n\nPara responder, pode escrever para este endereço (contact@nextafricangeneration.fr ) ou diretamente para o meu e-mail pessoal: president@nextafricangeneration.fr .\n\nCom os melhores cumprimentos,\n\n[NAG Logo]\nNext African Generation\nGETACHEW Yetayal  |  Presidente & Fundador\nAssociação sem fins lucrativos (Lei francesa 1901) · RNA W751276194 · SIREN 941287476\nTel.: +33 6 46 33 77 28\nE-mail: contact@nextafricangeneration.fr\nResposta direta (Presidente): president@nextafricangeneration.fr\nSede: 7 rue de Madrid, 75008 Paris · France\nPortais oficiais: nextafricangeneration.fr   |  nagbusiness.com", "date": "Récent", "tracking": "", "snippet": "Exmos Senhores,\nBoa tarde.\n\nAcusamos a receção do vosso e-mail, o qual agradecemos e será dado o devido seguimento.\n\nMelhores cumprimentos,\nGlória Massunguine\nSecretária\nGabinete do Conselho de Administração\n________________________________________\nHidroeléctrica de Cahora Bassa, S.A.\nAV.25 de Setembro, Jat 1. 6º andar\nMaputo - Moçambique\nCel: +258 849811630\nTel: +258 21350706\nExt: 706\n\ne-mail: Gloria.Massunguine@hcb.co.mz ;\n[cid:image002.png@01DD72B1.E4263530] [cid:image004.png@01DD72B1.E4263530] Website: www.hcb.co.mz ;\n\n[cid:image005.png@01DD72B1.E4263530] [cid:image006.png@01DD72B1.E4263530]\n[cid:image007.png@01DD72B1.E4263530][cid:image008.gif@01DD72B1.E4263530]"}], "pdf_dossiers": [{"title": "Presentation_NAG.pdf (Vodacom Tanzania & Anglophone Partners)", "filename": "Presentation_NAG.pdf", "lang": "Anglais", "pages": "2 pages (format strict)", "signatory": "GETACHEW Yetayal | Founder & President", "description": "Mémorandum stratégique & présentation officielle NAG : Talents d'ingénierie télécom, alignement fintech transfrontalier M-Pesa & connectivité rurale UCSAF."}, {"title": "Apresentacao_NAG.pdf (Carrinho Empreendimentos & Lusophone Partners)", "filename": "Apresentacao_NAG.pdf", "lang": "Portugais", "pages": "4 pages (dossier complet)", "signatory": "GETACHEW Yetayal | Fundador & Presidente do Conselho Executivo", "description": "Memorando institucional e proposta de cooperação : Soberania alimentar, agro-indústria em Benguela/Lobito e projecção regional no Corredor do Lobito (SADC / ZLECAf)."}]};
 
-    async function sha256(message) {
-      if (!window.crypto || !crypto.subtle) return null;
-      const msgBuffer = new TextEncoder().encode(message);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    // Client-side authentication with SHA-256 and localStorage persistence
+    async function sha256(str) {
+      const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
     }
 
-    async function checkAuth() {
-      const input = (document.getElementById('passcode').value || '').trim();
-      if (input === 'nag2026') {
-        sessionStorage.setItem('nag_auth', '1');
+    async function checkPassword() {
+      const pwd = document.getElementById('password-input').value;
+      const hash = await sha256(pwd);
+      if (hash === PAYLOAD.password_hash) {
+        localStorage.setItem('nag_briefing_auth', hash);
         unlock();
-        return;
+      } else {
+        document.getElementById('login-error').style.display = 'block';
       }
-      try {
-        const hash = await sha256(input);
-        if (hash && hash === PAYLOAD.password_hash) {
-          sessionStorage.setItem('nag_auth', '1');
-          unlock();
-          return;
-        }
-      } catch (err) {
-        console.warn('Crypto fallback:', err);
-      }
-      document.getElementById('login-error').style.display = 'block';
     }
 
-    document.getElementById('passcode').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') checkAuth();
+    document.getElementById('password-input').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') checkPassword();
+    });
+
+    // Auto-login from localStorage
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('nag_briefing_auth');
+      if (saved === PAYLOAD.password_hash) {
+        unlock();
+      }
     });
 
     function unlock() {
@@ -851,203 +1176,346 @@
       if (btn) btn.classList.add('active');
     }
 
-    function openAndCopyEmail(emailAddr, mailboxUrl, mailboxName, e) {
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.innerHTML = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 6000);
+    }
+
+    function openAndCopyEmail(emailAddr, mailboxUrl, mailboxName) {
+      const cleanEmail = (emailAddr || '').split(' ')[0].replace(/[\(\)<>,]/g, '');
       try {
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          const cleanEmail = (emailAddr || '').split(' ')[0];
           navigator.clipboard.writeText(cleanEmail);
         }
       } catch (err) {}
-      const cleanEmail = (emailAddr || '').split(' ')[0];
-      showToast(`📬 Boîte <strong>${mailboxName || 'Infomaniak'}</strong> ouverte !<br>💡 L'adresse <strong>${cleanEmail}</strong> est déjà copiée : faites <strong>Cmd+V + Entrée</strong> dans la recherche en haut pour ouvrir le message immédiatement.`);
+      showToast(`📬 Boîte <strong>${mailboxName}</strong> ouverte !<br>💡 L'adresse <strong>${cleanEmail}</strong> a été copiée : collez-la directement dans la recherche Infomaniak.`);
+      window.open(mailboxUrl, '_blank');
+    }
+
+    function openMessageModal(title, content, actionButtonsHtml) {
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-content').textContent = content;
+      document.getElementById('modal-actions').innerHTML = actionButtonsHtml || '<button class="btn-action btn-mailto" onclick="closeModal()">Fermer</button>';
+      document.getElementById('message-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('message-modal').style.display = 'none';
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'message-modal') closeModal();
+    }
+
+    function toggleExpand(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.toggle('expanded');
+      const btn = document.getElementById('toggle-' + id);
+      if (btn) {
+        btn.textContent = el.classList.contains('expanded') ? '▴ Replier' : '▾ Déplier le message complet';
+      }
     }
 
     function markTaskDone(contactEmail, btn) {
-      const card = btn.closest('.action-card');
-      if (!card) return;
-      
-      const cleanEmail = (contactEmail || '').split(' ')[0];
+      const clean = (contactEmail || '').split(' ')[0];
       let resolved = [];
       try {
         resolved = JSON.parse(localStorage.getItem('nag_resolved_contacts') || '[]');
       } catch (e) { resolved = []; }
 
-      if (!resolved.includes(cleanEmail)) {
-        resolved.push(cleanEmail);
-        try {
-          localStorage.setItem('nag_resolved_contacts', JSON.stringify(resolved));
-        } catch (e) {}
+      if (!resolved.includes(clean)) {
+        resolved.push(clean);
+        localStorage.setItem('nag_resolved_contacts', JSON.stringify(resolved));
+        btn.classList.add('completed');
+        btn.innerHTML = '<span>✓ Traité par Robin</span>';
+        const card = btn.closest('.action-card');
+        if (card) card.classList.add('card-resolved');
+        showToast(`✅ Contact <strong>${clean}</strong> consigné comme traité.`);
+      } else {
+        resolved = resolved.filter(c => c !== clean);
+        localStorage.setItem('nag_resolved_contacts', JSON.stringify(resolved));
+        btn.classList.remove('completed');
+        btn.innerHTML = '<span>✅ Marquer comme traité</span>';
+        const card = btn.closest('.action-card');
+        if (card) card.classList.remove('card-resolved');
       }
-
-      card.classList.add('card-resolved');
-      btn.classList.add('completed');
-      btn.innerHTML = '<span>✓ Traité par Robin</span>';
-
       updateUrgentBadgeCount();
-
-      showToast(`✅ Dossier <strong>${cleanEmail}</strong> marqué comme traité !<br>🛡️ L'agent vérifie vos envois et ne relancera plus jamais cette adresse.`);
     }
 
     function updateUrgentBadgeCount() {
-      const total = PAYLOAD.action_items.length;
       let resolved = [];
       try {
         resolved = JSON.parse(localStorage.getItem('nag_resolved_contacts') || '[]');
       } catch (e) { resolved = []; }
-      const resolvedCount = PAYLOAD.action_items.filter(a => resolved.includes((a.contact || '').split(' ')[0])).length;
-      const remaining = Math.max(0, total - resolvedCount);
-
-      const setTxt = (id, val) => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = val;
-      };
-      setTxt('kpi-actions', remaining);
-      setTxt('tab-action-count', remaining);
-      setTxt('action-count', remaining);
+      const total = PAYLOAD.action_items.length;
+      const count = Math.max(0, total - resolved.length);
+      document.getElementById('badge-actions').textContent = count;
+      document.getElementById('kpi-actions').textContent = count;
     }
 
-    function showToast(msg) {
-      let toast = document.getElementById('nag-toast');
-      if (!toast) {
-        toast = document.createElement('div');
-        toast.id = 'nag-toast';
-        toast.style.cssText = 'position:fixed;bottom:24px;right:24px;background:#0f172a;color:#f8fafc;padding:14px 22px;border-radius:14px;border:1px solid #38bdf8;box-shadow:0 12px 35px rgba(0,0,0,0.7);font-size:14px;z-index:9999;transition:opacity 0.3s ease;display:flex;align-items:center;gap:10px;font-family:sans-serif;backdrop-filter:blur(12px);';
-        document.body.appendChild(toast);
-      }
-      toast.innerHTML = msg;
-      toast.style.opacity = '1';
-      clearTimeout(window.__toastTimeout);
-      window.__toastTimeout = setTimeout(() => {
-        toast.style.opacity = '0';
-      }, 4500);
+    function handleSearch(query) {
+      const q = (query || '').toLowerCase().trim();
+      document.querySelectorAll('.action-card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(q) ? 'block' : 'none';
+      });
+      document.querySelectorAll('#active-tbody tr, #deferred-tbody tr').forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(q) ? '' : 'none';
+      });
     }
 
-    if (sessionStorage.getItem('nag_auth') === '1') {
-      unlock();
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
     }
 
     function renderData() {
-      const setTxt = (id, val) => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = val;
-      };
+      document.getElementById('briefing-date').textContent = 'Briefing généré le ' + PAYLOAD.generated_at;
 
-      try {
-        setTxt('generated-at', 'Briefing généré le ' + PAYLOAD.generated_at);
-        setTxt('kpi-sent', PAYLOAD.kpis.total_sent);
-        setTxt('kpi-sent-sub', `${PAYLOAD.kpis.ministries_sent} Ministères · ${PAYLOAD.kpis.enterprises_sent} Entreprises`);
-        setTxt('kpi-actions', PAYLOAD.kpis.urgent_actions);
-        setTxt('kpi-active-conversations', PAYLOAD.kpis.active_discussions);
-        setTxt('kpi-bounces', PAYLOAD.kpis.total_resolved_bounces);
-        setTxt('kpi-deferred', PAYLOAD.kpis.deferred_count);
+      // KPIs
+      document.getElementById('kpi-sent').textContent = PAYLOAD.kpis.total_sent;
+      document.getElementById('kpi-sent-sub').textContent = `${PAYLOAD.kpis.ministries_sent} Ministères · ${PAYLOAD.kpis.enterprises_sent} Entreprises`;
+      document.getElementById('kpi-active').textContent = PAYLOAD.kpis.active_discussions;
+      document.getElementById('kpi-deferred').textContent = PAYLOAD.kpis.deferred_count;
+      document.getElementById('kpi-bounces').textContent = PAYLOAD.kpis.total_resolved_bounces;
 
-        // Tab counts
-        setTxt('tab-action-count', PAYLOAD.action_items.length);
-        setTxt('tab-active-count', PAYLOAD.active_conversations.length);
-        setTxt('tab-deferred-count', PAYLOAD.deferred_items.length);
-        setTxt('action-count', PAYLOAD.action_items.length);
-        setTxt('deferred-count', PAYLOAD.deferred_items.length);
-        setTxt('active-count', PAYLOAD.active_conversations.length);
-      } catch (err) {
-        console.error('Error rendering KPIs:', err);
-      }
+      document.getElementById('badge-active').textContent = PAYLOAD.kpis.active_discussions;
+      document.getElementById('badge-deferred').textContent = PAYLOAD.kpis.deferred_count;
+      document.getElementById('badge-dossiers').textContent = PAYLOAD.pdf_dossiers.length;
 
-      function escapeHtml(str) {
-        if (!str) return '';
-        return String(str)
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#39;');
-      }
-
-      // Action Items
+      // Render Actions
       const actContainer = document.getElementById('action-container');
-      document.getElementById('action-count').textContent = PAYLOAD.action_items.length;
-      if (PAYLOAD.action_items.length === 0) {
-        actContainer.innerHTML = '<div class="empty-state">✅ Aucun arbitrage urgent requis ce matin. Les agents gèrent le suivi en tâche de fond.</div>';
-      } else {
-        let resolved = [];
-        try {
-          resolved = JSON.parse(localStorage.getItem('nag_resolved_contacts') || '[]');
-        } catch (e) { resolved = []; }
+      let resolved = [];
+      try {
+        resolved = JSON.parse(localStorage.getItem('nag_resolved_contacts') || '[]');
+      } catch (e) { resolved = []; }
 
-        actContainer.innerHTML = PAYLOAD.action_items.map(a => {
-          const clean = (a.contact || '').split(' ')[0];
-          const isDone = resolved.includes(clean);
-          return `
-          <div class="action-card ${isDone ? 'card-resolved' : ''}">
-            <div class="action-header">
-              <span class="badge ${a.badge_class}">${a.badge}</span>
-              <span class="action-source">${a.source} · ${a.date}</span>
-            </div>
-            <div class="action-contact-row">
-              <a href="${a.mailbox_url}" target="_blank" onclick="openAndCopyEmail('${a.contact}', '${a.mailbox_url}', '${a.mailbox_email}', event)" class="action-contact-link" title="Ouvrir dans ${a.mailbox_email} (copie l'adresse)">
-                <span>📧 ${a.contact}</span>
-                <span style="font-size: 13px; opacity: 0.8;">↗</span>
-              </a>
-              <a href="${a.mailbox_url}" target="_blank" onclick="openAndCopyEmail('${a.contact}', '${a.mailbox_url}', '${a.mailbox_email}', event)" class="btn-action-open btn-infomaniak" title="Ouvrir directement la boîte ${a.mailbox_email}">
-                <span>🚀 Ouvrir dans ${a.mailbox_email}</span>
-              </a>
-              ${a.message_url ? `
-              <a href="${a.message_url}" class="btn-action-open btn-native" title="Ouvrir le message exact dans Apple Mail / client messagerie macOS">
-                <span>📬 Ouvrir l'e-mail exact</span>
-              </a>` : ''}
-              <a href="${a.mailto_url || ('mailto:' + a.contact)}" class="btn-action-open btn-mailto" title="Écrire via client messagerie local">
-                <span>✉️ Répondre</span>
-              </a>
-              <button class="btn-action-open btn-done ${isDone ? 'completed' : ''}" onclick="markTaskDone('${a.contact}', this)" title="Marquer cette tâche comme effectuée">
-                <span>${isDone ? '✓ Traité par Robin' : '✅ Marquer comme traité'}</span>
-              </button>
-            </div>
-            <div class="action-details">${escapeHtml(a.details)}</div>
-            <div class="action-instruction">👉 Action attendue : ${a.instruction}</div>
+      actContainer.innerHTML = PAYLOAD.action_items.map((a, idx) => {
+        const clean = (a.contact || '').split(' ')[0];
+        const isDone = resolved.includes(clean);
+        const previewId = 'prev-' + idx;
+        const fullMsgEscaped = escapeHtml(a.raw_text || a.details);
+
+        return `
+        <div class="action-card ${isDone ? 'card-resolved' : ''}">
+          <div class="action-header">
+            <span class="badge ${a.badge_class}">${a.badge}</span>
+            <span class="action-source">${a.source} · ${a.date}</span>
           </div>
-        `}).join('');
-        updateUrgentBadgeCount();
-      }
 
-      // Deferred Items
-      const defTbody = document.getElementById('deferred-tbody');
-      document.getElementById('deferred-count').textContent = PAYLOAD.deferred_items.length;
-      if (PAYLOAD.deferred_items.length === 0) {
-        defTbody.innerHTML = '<tr><td colspan="5" class="empty-state">Aucun report convenu actuellement.</td></tr>';
-      } else {
-        defTbody.innerHTML = PAYLOAD.deferred_items.map(d => `
-          <tr>
-            <td class="mono">
-              <a href="${d.mailbox_url}" target="_blank" onclick="openAndCopyEmail('${d.contact}', '${d.mailbox_url}', '${d.mailbox_email}', event)" class="email-link" title="Ouvrir dans ${d.mailbox_email}">
-                ${d.contact} <span style="font-size: 11px; opacity: 0.8;">↗</span>
-              </a>
-            </td>
-            <td>${d.source}</td>
-            <td><strong style="color: #a78bfa;">${d.defer_date}</strong></td>
-            <td>${d.tracking ? '<code>' + d.tracking + '</code>' : '-'}</td>
-            <td class="message-cell">${escapeHtml(d.snippet)}</td>
-          </tr>
-        `).join('');
-      }
+          <div class="action-contact-row">
+            <a href="javascript:void(0)" onclick="openAndCopyEmail('${a.contact}', '${a.mailbox_url}', '${a.mailbox_email}')" class="action-contact-link" title="Ouvrir dans ${a.mailbox_email}">
+              <span>📧 ${a.contact}</span>
+              <span style="font-size: 13px; opacity: 0.8;">↗</span>
+            </a>
 
-      // Active Discussions
+            <button class="btn-action btn-read-full" onclick="openMessageModal('Message reçu — ${escapeHtml(a.contact)}', ${JSON.stringify(a.raw_text || a.details)}, '<button class=\'btn-action btn-infomaniak\' onclick=\'openAndCopyEmail(\'${a.contact}\', \'${a.mailbox_url}\', \'${a.mailbox_email}\')\'>🚀 Ouvrir Infomaniak</button><button class=\'btn-action btn-mailto\' onclick=\'closeModal()\'>Fermer</button>')">
+              <span>👁️ Lire l'e-mail complet</span>
+            </button>
+
+            <button class="btn-action btn-infomaniak" onclick="openAndCopyEmail('${a.contact}', '${a.mailbox_url}', '${a.mailbox_email}')" title="Ouvrir la boîte Infomaniak">
+              <span>🚀 Ouvrir ${a.mailbox_email}</span>
+            </button>
+
+            ${a.message_url ? `
+            <a href="${a.message_url}" class="btn-action btn-native" title="Ouvrir dans Apple Mail (iOS / macOS)">
+              <span>📬 Ouvrir dans Mail</span>
+            </a>` : ''}
+
+            <a href="${a.mailto_url || ('mailto:' + a.contact)}" class="btn-action btn-mailto" title="Répondre directement">
+              <span>✉️ Répondre</span>
+            </a>
+
+            ${a.pdf_filename ? `
+            <a href="${a.pdf_filename}" download class="btn-action btn-download-pdf" title="Télécharger le PDF officiel">
+              <span>📄 Télécharger ${a.pdf_filename}</span>
+            </a>` : ''}
+
+            <button class="btn-action btn-done ${isDone ? 'completed' : ''}" onclick="markTaskDone('${a.contact}', this)">
+              <span>${isDone ? '✓ Traité par Robin' : '✅ Marquer comme traité'}</span>
+            </button>
+          </div>
+
+          <div id="${previewId}" class="action-message-preview">${fullMsgEscaped}</div>
+          <span id="toggle-${previewId}" class="expand-toggle" onclick="toggleExpand('${previewId}')">▾ Déplier le message complet</span>
+
+          <div class="action-instruction">
+            <strong>👉 Action attendue :</strong> ${a.instruction}
+            ${a.draft_status ? `<div style="margin-top: 4px; color: #a7f3d0;"><strong>💡 Statut :</strong> ${a.draft_status}</div>` : ''}
+          </div>
+        </div>
+        `;
+      }).join('');
+
+      updateUrgentBadgeCount();
+
+      // Render Active Conversations
       const actTbody = document.getElementById('active-tbody');
-      document.getElementById('active-count').textContent = PAYLOAD.active_conversations.length;
-      if (PAYLOAD.active_conversations.length === 0) {
-        actTbody.innerHTML = '<tr><td colspan="4" class="empty-state">Aucune conversation active pour le moment.</td></tr>';
-      } else {
-        actTbody.innerHTML = PAYLOAD.active_conversations.slice(0, 30).map(c => `
-          <tr>
-            <td class="mono">
-              <a href="${c.mailbox_url}" target="_blank" onclick="openAndCopyEmail('${c.contact}', '${c.mailbox_url}', '${c.mailbox_email}', event)" class="email-link" title="Ouvrir dans ${c.mailbox_email}">
-                ${c.contact} <span style="font-size: 11px; opacity: 0.8;">↗</span>
-              </a>
-            </td>
-            <td>${c.source}</td>
-            <td>${c.date}</td>
-            <td class="message-cell">${escapeHtml(c.snippet)}</td>
-          </tr>
-        `).join('');
+      actTbody.innerHTML = PAYLOAD.active_conversations.map(c => `
+        <tr>
+          <td class="mono">
+            <a href="javascript:void(0)" onclick="openAndCopyEmail('${c.contact}', '${c.mailbox_url}', '${c.mailbox_email}')" style="color:#93c5fd; text-decoration:none; font-weight:600;">
+              ${c.contact} ↗
+            </a>
+          </td>
+          <td>${c.source}</td>
+          <td>${c.date}</td>
+          <td class="message-cell" title="${escapeHtml(c.snippet)}">${escapeHtml(c.snippet)}</td>
+          <td>
+            <button class="btn-action btn-read-full" style="padding: 4px 10px; font-size: 11px;" onclick="openMessageModal('Échange — ${escapeHtml(c.contact)}', ${JSON.stringify(c.raw_text || c.snippet)}, '')">
+              👁️ Lire
+            </button>
+          </td>
+        </tr>
+      `).join('');
+
+      // Render Deferred Items
+      const defTbody = document.getElementById('deferred-tbody');
+      defTbody.innerHTML = PAYLOAD.deferred_items.map(d => `
+        <tr>
+          <td class="mono">
+            <a href="javascript:void(0)" onclick="openAndCopyEmail('${d.contact}', '${d.mailbox_url}', '${d.mailbox_email}')" style="color:#c4b5fd; text-decoration:none; font-weight:600;">
+              ${d.contact} ↗
+            </a>
+          </td>
+          <td>${d.source}</td>
+          <td><strong style="color: #a78bfa;">${d.defer_date}</strong></td>
+          <td>${d.tracking ? '<code>' + d.tracking + '</code>' : '-'}</td>
+          <td class="message-cell" title="${escapeHtml(d.snippet)}">${escapeHtml(d.snippet)}</td>
+          <td>
+            <button class="btn-action btn-read-full" style="padding: 4px 10px; font-size: 11px;" onclick="openMessageModal('Report — ${escapeHtml(d.contact)}', ${JSON.stringify(d.raw_text || d.snippet)}, '')">
+              👁️ Lire
+            </button>
+          </td>
+        </tr>
+      `).join('');
+
+      // Render Dossiers
+      const dosContainer = document.getElementById('dossiers-container');
+      dosContainer.innerHTML = PAYLOAD.pdf_dossiers.map(d => `
+        <div class="dossier-card">
+          <div class="dossier-info">
+            <h4>📄 ${d.title}</h4>
+            <p>${d.description}</p>
+            <div class="dossier-meta">
+              <span>🌐 Langue : ${d.lang}</span>
+              <span>📏 ${d.pages}</span>
+              <span>✍️ Signataire : ${d.signatory}</span>
+            </div>
+          </div>
+          <div class="dossier-actions">
+            <a href="${d.filename}" download class="btn-action btn-download-pdf" style="padding: 10px 18px; font-size: 13.5px;">
+              <span>⬇️ Télécharger le PDF officiel</span>
+            </a>
+            <a href="${d.filename}" target="_blank" class="btn-action btn-mailto" style="padding: 10px 18px; font-size: 13.5px; margin-top: 6px;">
+              <span>👁️ Aperçu plein écran</span>
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // AI Copilot Logic
+    function askAiPrompt(promptText) {
+      document.getElementById('ai-input').value = promptText;
+      sendAiMessage();
+    }
+
+    function sendAiMessage() {
+      const inp = document.getElementById('ai-input');
+      const text = inp.value.trim();
+      if (!text) return;
+
+      appendAiMessage('user', text);
+      inp.value = '';
+
+      // Intelligent local semantic processor using full payload data
+      setTimeout(() => {
+        const response = generateAiResponse(text);
+        appendAiMessage('assistant', response);
+      }, 300);
+    }
+
+    function appendAiMessage(role, html) {
+      const box = document.getElementById('ai-messages');
+      const div = document.createElement('div');
+      div.className = 'ai-msg ' + role;
+      div.innerHTML = role === 'user' ? escapeHtml(html) : html;
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function generateAiResponse(query) {
+      const q = query.toLowerCase();
+
+      if (q.includes('priorité') || q.includes('urgent') || q.includes('aujourd') || q.includes('action')) {
+        let res = '<p>Voici la synthèse des <strong>5 actions prioritaires</strong> requises aujourd\'hui :</p><ul>';
+        PAYLOAD.action_items.forEach((a, i) => {
+          res += `<li><strong>${i+1}. ${escapeHtml(a.contact)} :</strong> ${escapeHtml(a.badge)}.<br><em>${escapeHtml(a.instruction)}</em></li>`;
+        });
+        res += '</ul><p>💡 <em>Les brouillons pour Carrinho et Vodacom sont déjà prêts dans votre dossier Brouillons Infomaniak.</em></p>';
+        return res;
       }
+
+      if (q.includes('vodacom') || q.includes('tanzanie') || q.includes('tanzania')) {
+        return `<p><strong>Dossier Vodacom Tanzania PLC (Tanzanie) :</strong></p>
+        <p>• <strong>Correspondant :</strong> Ms. Ester Kadati (Social Media Advisor) pour Philip Besiimire (CEO).</p>
+        <p>• <strong>Demande :</strong> Lettre officielle de présentation au format PDF.</p>
+        <p>• <strong>Statut :</strong> Le document officiel <strong>Presentation_NAG.pdf</strong> (2 pages strictes, sans signature orpheline, signé par <em>GETACHEW Yetayal | Founder & President</em>) est déjà compilé et rattaché au brouillon prêt à l'envoi dans <code>contact@nextafricangeneration.fr</code>.</p>
+        <p>• <strong>Destinataires :</strong> <code>customercare@vodacom.co.tz</code> avec en copie <code>business@vodacom.co.tz</code> et <code>investorrelations@vodacom.co.tz</code>.</p>`;
+      }
+
+      if (q.includes('carrinho') || q.includes('angola')) {
+        return `<p><strong>Dossier Carrinho Empreendimentos, S.A. (Angola) :</strong></p>
+        <p>• <strong>Correspondant :</strong> Sra. Joana da Silva (Contact Center) pour M. Nelson Carrinho (PCA & CEO).</p>
+        <p>• <strong>Demande :</strong> Carta de apresentação institucional en PDF.</p>
+        <p>• <strong>Statut :</strong> Le dossier complet <strong>Apresentacao_NAG.pdf</strong> (signé par <em>GETACHEW Yetayal | Fundador & Presidente do Conselho Executivo</em>) est joint au brouillon prêt dans vos Brouillons Infomaniak.</p>
+        <p>• <strong>Synergies clés :</strong> Aceleração agro-alimentar no Lobito e corredor regional SADC/ZLECAf.</p>`;
+      }
+
+      if (q.includes('report') || q.includes('2027') || q.includes('calendrier')) {
+        let res = `<p><strong>Reports officiels à 2027 :</strong></p><ul>`;
+        PAYLOAD.deferred_items.forEach(d => {
+          res += `<li><strong>${escapeHtml(d.contact)} :</strong> Reprise calée au <strong>${escapeHtml(d.defer_date)}</strong> (${escapeHtml(d.source)}).</li>`;
+        });
+        res += `</ul><p>L'IA relancera automatiquement à ces dates précises sans déranger le contact avant.</p>`;
+        return res;
+      }
+
+      if (q.includes('chiffre') || q.includes('bilan') || q.includes('stats') || q.includes('kpi') || q.includes('délivrabilité')) {
+        return `<p><strong>Bilan Exécutif Global de la Campagne NAG :</strong></p>
+        <p>• <strong>Total e-mails distribués avec succès :</strong> <strong>${PAYLOAD.kpis.total_sent}</strong> (635 Ministères & 169 Grandes Entreprises sur 54 pays).</p>
+        <p>• <strong>Discussions actives :</strong> <strong>${PAYLOAD.kpis.active_discussions}</strong> échanges constructifs en cours.</p>
+        <p>• <strong>Bounces audités et résolus :</strong> <strong>${PAYLOAD.kpis.total_resolved_bounces}</strong> adresses officielles corrigées.</p>
+        <p>• <strong>Plafond de sécurité :</strong> Respect strict du plafond de 100 e-mails max par 24h glissantes pour préserver la réputation du domaine <code>@nextafricangeneration.fr</code>.</p>`;
+      }
+
+      if (q.includes('namibia') || q.includes('nambrew')) {
+        return `<p><strong>Namibia Breweries Limited (Namibie) :</strong></p>
+        <p>• L'entreprise utilise une boîte non surveillée et a redirigé vers son formulaire officiel en ligne : <code>https://nambrew.com/contact-us/contact/</code>.</p>
+        <p>• Une action humaine simple consiste à y soumettre la proposition NAG pour entrer dans leur circuit d'achats/partenariats.</p>`;
+      }
+
+      if (q.includes('rédig') || q.includes('reponse') || q.includes('écrire') || q.includes('mail')) {
+        return `<p><strong>Générateur de message diplomatique :</strong></p>
+        <p>Pour qui souhaitez-vous rédiger une réponse ? Vous pouvez me préciser :</p>
+        <p>1. Le nom ou l'entreprise du destinataire (ex: <em>Nelson Carrinho</em> ou <em>Philip Besiimire</em>)</p>
+        <p>2. L'objectif (ex: <em>proposer un créneau de visio</em> ou <em>remercier pour l'accusé de réception</em>)</p>
+        <p>Je vous formaterai immédiatement le texte parfait en français, anglais ou portugais avec la signature officielle de <strong>GETACHEW Yetayal | Fondateur & Président</strong>.</p>`;
+      }
+
+      // General fallback semantic matching
+      return `<p>Je note votre question concernant <strong>"${escapeHtml(query)}"</strong>.</p>
+      <p>Sur les <strong>804 contacts</strong> et <strong>54 pays africains</strong> répertoriés, toutes les données sont synchronisées. Vous pouvez consulter les onglets ci-dessus pour les actions du jour, ou me poser une question plus précise sur un pays, une entreprise ou un créneau de réunion.</p>`;
     }
   </script>
 </body>
